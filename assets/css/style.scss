@@ -1,0 +1,26 @@
+---
+---
+
+@import "minima";
+
+.site-header {
+  border-top: 4px solid #0f766e;
+}
+
+.site-title,
+.site-title:visited {
+  color: #0b132b;
+  font-weight: 700;
+}
+
+.post-link {
+  color: #0f766e;
+}
+
+.post-link:hover {
+  color: #115e59;
+}
+
+.page-content {
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 40%);
+}

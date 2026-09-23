@@ -1,0 +1,48 @@
+title: venqi.io
+description: Quantum computing notes, tutorials, and experiments by Venki
+url: "https://venqi.io"
+baseurl: ""
+
+author:
+  name: Venki
+  email: your-email@example.com
+
+theme: minima
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+minima:
+  skin: classic
+  social_links:
+    - title: GitHub
+      icon: github
+      url: https://github.com/techyvenki
+
+header_pages:
+  - about.md
+  - research-notes.md
+
+markdown: kramdown
+permalink: /:categories/:year/:month/:day/:title/
+
+collections:
+  tutorials:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      author: Venki
+      categories: [quantum]
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
