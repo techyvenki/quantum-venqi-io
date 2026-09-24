@@ -318,29 +318,6 @@ h1{
 .cta:hover,.cta:focus-visible{color:#fff;border-color:rgba(56,232,208,.5);
   box-shadow:0 0 34px rgba(56,232,208,.28)}
 
-.auto-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:6px}
-.auto-status{
-  border:1px solid rgba(180,165,255,.28);
-  border-radius:999px;
-  background:rgba(20,10,44,.42);
-  color:var(--dim);
-  padding:10px 14px;
-  font-size:9px;
-  letter-spacing:.16em;
-}
-.auto-btn{
-  border:1px solid var(--edge);
-  border-radius:999px;
-  background:rgba(20,10,44,.42);
-  color:var(--ink);
-  font:inherit;
-  font-size:9px;
-  letter-spacing:.16em;
-  padding:10px 13px;
-  cursor:pointer;
-}
-.auto-btn:hover,.auto-btn:focus-visible{border-color:rgba(56,232,208,.5);color:#fff}
-
 .ctarow{display:none}
 .cta.ghost{background:transparent;box-shadow:none;border-color:rgba(180,165,255,.28);opacity:.85}
 .cta.ghost[aria-pressed="true"]{
@@ -425,9 +402,6 @@ h1{
   .menu a,.menu button{font-size:11px;letter-spacing:.12em}
   .spotlight{padding:12px;margin-top:22px}
   .spot-grid{grid-template-columns:1fr}
-  .auto-row{gap:7px}
-  .auto-status{width:100%;padding:9px 11px}
-  .auto-btn{flex:1;text-align:center;padding:9px 10px}
   .ticker{margin:8px -16px -16px;padding:8px 0}
 }
 @media (max-width:420px){
@@ -454,9 +428,6 @@ h1{
   .spot-tag b{margin-left:6px;padding:1px 4px;font-size:7px}
   .spot-card h3{font-size:11px;line-height:1.45;margin-bottom:6px}
   .spot-card p{font-size:10px;line-height:1.55}
-  .auto-row{gap:6px}
-  .auto-status{font-size:8px;letter-spacing:.12em;padding:8px 10px}
-  .auto-btn{font-size:8px;letter-spacing:.12em;padding:8px 10px}
   .ticker{display:none}
 }
 @media (max-width:360px){
@@ -523,11 +494,6 @@ h1{
       </div>
       <div class="spot-grid" id="spot-grid"></div>
     </section>
-    <div class="auto-row" aria-label="Automatic animation controls">
-      <div class="auto-status" id="auto-status">AUTO TRANSITIONS ON</div>
-      <button class="auto-btn" id="auto-toggle" type="button" aria-pressed="false">PAUSE</button>
-      <button class="auto-btn" id="auto-next" type="button">NEXT</button>
-    </div>
     <div class="ctarow">
       <button class="cta" id="cta">COLLAPSE THE STATE</button>
       <button class="cta ghost" id="meet" aria-pressed="false">ASSEMBLE VENKI</button>
@@ -689,9 +655,6 @@ try {
 var spotGrid=document.getElementById("spot-grid");
 var sortNewestBtn=document.getElementById("sort-newest");
 var sortPinnedBtn=document.getElementById("sort-pinned");
-var autoStatus=document.getElementById("auto-status");
-var autoToggle=document.getElementById("auto-toggle");
-var autoNext=document.getElementById("auto-next");
 var spotlightSort="newest";
 function byNewest(a,b){
   var da=new Date((a.date||"")+"T00:00:00").getTime()||0;
@@ -1158,60 +1121,28 @@ function clearPortrait(){
   updateFocus();
 }
 
-/* ---- automatic transition cycle ---- */
-var autoActions=[
-  {name:"COLLAPSE", run:function(){document.getElementById("cta").click();}},
-  {name:"ASSEMBLE", run:function(){meetBtn.click();}},
-  {name:"MACHINE", run:function(){machBtn.click();}},
-  {name:"PORTRAIT", run:function(){portBtn.click();}}
-];
-var autoIndex=0;
-var autoDelay=7600;
-var autoTimer=null;
-var autoDeadline=0;
-var autoPaused=false;
-
-function nextAutoName(){
-  return autoActions[autoIndex].name;
-}
-function updateAutoStatus(){
-  var left = Math.max(0, Math.ceil((autoDeadline-Date.now())/1000));
-  if(autoPaused){
-    autoStatus.textContent="AUTO TRANSITIONS PAUSED";
-    autoToggle.textContent="RESUME";
-    autoToggle.setAttribute("aria-pressed","true");
-  }else{
-    autoStatus.textContent="AUTO ON · NEXT " + nextAutoName() + " IN " + left + "s";
-    autoToggle.textContent="PAUSE";
-    autoToggle.setAttribute("aria-pressed","false");
+/* ---- automatic scene selection (no visible controls) ---- */
+function applyScene(scene){
+  switch(scene){
+    case "collapse":
+      document.getElementById("cta").click();
+      break;
+    case "assemble":
+      if(meetBtn.getAttribute("aria-pressed")!=="true") meetBtn.click();
+      break;
+    case "machine":
+      if(machBtn.getAttribute("aria-pressed")!=="true") machBtn.click();
+      break;
+    case "portrait":
+      if(portBtn.getAttribute("aria-pressed")!=="true") portBtn.click();
+      break;
   }
 }
-function scheduleAuto(ms){
-  clearTimeout(autoTimer);
-  if(autoPaused){updateAutoStatus();return;}
-  autoDeadline=Date.now()+ms;
-  autoTimer=setTimeout(function(){
-    autoActions[autoIndex].run();
-    autoIndex=(autoIndex+1)%autoActions.length;
-    scheduleAuto(autoDelay);
-  }, ms);
-  updateAutoStatus();
+function chooseRandomScene(){
+  var scenes=["collapse","assemble","machine","portrait"];
+  var pick=scenes[(Math.random()*scenes.length)|0];
+  applyScene(pick);
 }
-autoToggle.addEventListener("click",function(){
-  autoPaused=!autoPaused;
-  if(autoPaused){
-    clearTimeout(autoTimer);
-    updateAutoStatus();
-  }else{
-    scheduleAuto(1200);
-  }
-});
-autoNext.addEventListener("click",function(){
-  autoActions[autoIndex].run();
-  autoIndex=(autoIndex+1)%autoActions.length;
-  scheduleAuto(autoDelay);
-});
-setInterval(function(){ if(!autoPaused) updateAutoStatus(); }, 700);
 
 /* ticker */
 var tick=document.getElementById("tick"), words=[];
@@ -1225,7 +1156,8 @@ tick.innerHTML=strip+strip;
 
 /* boot */
 showLines(HOME);
-scheduleAuto(autoDelay);
+setTimeout(chooseRandomScene, 1400);
+setInterval(chooseRandomScene, 300000);
 })();
 </script>
 </body>
