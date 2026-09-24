@@ -256,11 +256,45 @@ h1{
   color:#fff;
   background:rgba(123,92,255,.24);
 }
-.spot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+.spot-carousel{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:stretch;
+  gap:8px;
+}
+.spot-nav{
+  border:1px solid rgba(180,165,255,.28);
+  border-radius:10px;
+  background:rgba(10,6,26,.62);
+  color:var(--ink);
+  font:inherit;
+  font-size:12px;
+  width:30px;
+  min-height:100%;
+  cursor:pointer;
+}
+.spot-nav:hover,.spot-nav:focus-visible{
+  border-color:rgba(56,232,208,.55);
+  box-shadow:0 0 14px rgba(56,232,208,.2);
+}
+.spot-grid{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  padding-bottom:4px;
+  scrollbar-width:thin;
+}
+.spot-grid::-webkit-scrollbar{height:8px}
+.spot-grid::-webkit-scrollbar-thumb{background:rgba(180,165,255,.28);border-radius:999px}
 .spot-card{
   border:1px solid rgba(180,165,255,.2);border-radius:12px;padding:12px;
   background:rgba(10,6,26,.55);text-decoration:none;color:var(--ink);
   transition:border-color .2s,transform .2s,box-shadow .2s;
+  flex:0 0 clamp(220px,30vw,310px);
+  scroll-snap-align:start;
 }
 .spot-card:hover,.spot-card:focus-visible{
   border-color:rgba(56,232,208,.52);transform:translateY(-2px);
@@ -405,7 +439,7 @@ h1{
   .menu{gap:7px}
   .menu a,.menu button{font-size:11px;letter-spacing:.12em}
   .spotlight{padding:12px;margin-top:22px}
-  .spot-grid{grid-template-columns:1fr}
+  .spot-card{flex-basis:82vw}
   .ticker{margin:8px -16px -16px;padding:8px 0}
 }
 @media (max-width:420px){
@@ -427,6 +461,8 @@ h1{
   .spot-head a{font-size:8.5px;letter-spacing:.1em}
   .spot-tools{width:100%;justify-content:space-between}
   .spot-sort button{font-size:7px;letter-spacing:.1em;padding:4px 6px}
+  .spot-carousel{grid-template-columns:1fr}
+  .spot-nav{display:none}
   .spot-card{padding:10px;border-radius:10px}
   .spot-tag{font-size:7.8px;letter-spacing:.14em;margin-bottom:6px}
   .spot-tag b{margin-left:6px;padding:1px 4px;font-size:7px}
@@ -496,7 +532,11 @@ h1{
           <a href="#" id="open-archive">SEE ALL POSTS</a>
         </div>
       </div>
-      <div class="spot-grid" id="spot-grid"></div>
+      <div class="spot-carousel">
+        <button type="button" class="spot-nav" id="spot-prev" aria-label="Scroll latest posts left">&#8249;</button>
+        <div class="spot-grid" id="spot-grid"></div>
+        <button type="button" class="spot-nav" id="spot-next" aria-label="Scroll latest posts right">&#8250;</button>
+      </div>
     </section>
     <div class="ctarow">
       <button class="cta" id="cta">COLLAPSE THE STATE</button>
@@ -665,9 +705,12 @@ try {
 } catch (e) {}
 
 var spotGrid=document.getElementById("spot-grid");
+var spotPrev=document.getElementById("spot-prev");
+var spotNext=document.getElementById("spot-next");
 var sortNewestBtn=document.getElementById("sort-newest");
 var sortPinnedBtn=document.getElementById("sort-pinned");
 var spotlightSort="newest";
+var SPOTLIGHT_LIMIT=10;
 function byNewest(a,b){
   var da=new Date((a.date||"")+"T00:00:00").getTime()||0;
   var db=new Date((b.date||"")+"T00:00:00").getTime()||0;
@@ -681,7 +724,7 @@ function byPinnedThenNewest(a,b){
 function renderSpotlight(){
   if(!spotGrid){return;}
   var sorted=POSTS.slice().sort(spotlightSort==="pinned"?byPinnedThenNewest:byNewest);
-  var pin=sorted.slice(0,3);
+  var pin=sorted.slice(0,SPOTLIGHT_LIMIT);
   var now=new Date();
   spotGrid.innerHTML=pin.map(function(p){
     var d=new Date(p.date+"T00:00:00");
@@ -695,6 +738,7 @@ function renderSpotlight(){
       '<div class="spot-meta"><span>'+when+'</span><span>'+(p.read||"READ")+'</span>'+(p.pinned?'<span class="spot-pin">PINNED</span>':'')+'</div>'+
     '</a>';
   }).join("");
+  spotGrid.scrollLeft=0;
 }
 renderSpotlight();
 sortNewestBtn.addEventListener("click",function(){
@@ -709,6 +753,18 @@ sortPinnedBtn.addEventListener("click",function(){
   sortPinnedBtn.setAttribute("aria-pressed","true");
   renderSpotlight();
 });
+function scrollSpotlight(direction){
+  if(!spotGrid){return;}
+  var firstCard=spotGrid.querySelector(".spot-card");
+  var step=firstCard ? (firstCard.getBoundingClientRect().width + 10) : 280;
+  spotGrid.scrollBy({left:direction*step,behavior:"smooth"});
+}
+if(spotPrev){
+  spotPrev.addEventListener("click",function(){ scrollSpotlight(-1); });
+}
+if(spotNext){
+  spotNext.addEventListener("click",function(){ scrollSpotlight(1); });
+}
 
 /* ---------------- readout ---------------- */
 var bars=document.getElementById("bars");
