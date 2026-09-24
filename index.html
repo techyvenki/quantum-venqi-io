@@ -29,7 +29,8 @@ body{
   background:var(--void);
   color:var(--ink);
   font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
-  overflow:hidden;
+  overflow-x:hidden;
+  overflow-y:auto;
   -webkit-font-smoothing:antialiased;
 }
 #field{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0}
@@ -47,7 +48,7 @@ body{
 
 /* ---------- shell ---------- */
 .shell{
-  position:relative;z-index:3;height:100%;
+  position:relative;z-index:3;min-height:100dvh;
   display:grid;grid-template-rows:auto 1fr auto;
   padding:clamp(18px,3.2vw,40px);
 }
@@ -87,7 +88,7 @@ body{
 .pill i{width:22px;height:1px;background:var(--edge);display:block}
 
 /* ---------- panels ---------- */
-.stage{position:relative;display:flex;align-items:center;min-height:0}
+.stage{position:relative;display:flex;align-items:center;min-height:0;padding:8px 0}
 .panel{
   border:1px solid var(--edge);
   background:var(--glass);
@@ -184,6 +185,13 @@ h1{
   box-shadow:0 0 24px rgba(56,232,208,.18);
 }
 .spot-tag{font-size:8.5px;letter-spacing:.2em;color:var(--spin);margin-bottom:8px;display:block}
+.spot-tag b{
+  display:inline-flex;align-items:center;justify-content:center;
+  margin-left:8px;padding:1px 6px;border-radius:999px;
+  border:1px solid rgba(56,232,208,.5);
+  color:#fff;font-size:8px;letter-spacing:.18em;font-weight:600;
+  box-shadow:0 0 14px rgba(56,232,208,.3);
+}
 .spot-card h3{margin:0 0 8px;font-size:12px;letter-spacing:.08em;line-height:1.5}
 .spot-card p{margin:0;color:var(--dim);font-size:10.5px;line-height:1.7}
 
@@ -264,14 +272,29 @@ h1{
 :focus-visible{outline:2px solid var(--spin);outline-offset:4px;border-radius:4px}
 
 @media (max-width:820px){
+  body{overflow-y:auto}
+  .shell{min-height:auto;display:block;padding:16px}
+  .top{position:sticky;top:0;z-index:5;padding-bottom:10px;background:linear-gradient(180deg,rgba(5,4,10,.92),rgba(5,4,10,.58) 70%,rgba(5,4,10,0))}
+  .pill{font-size:9px;letter-spacing:.12em;padding:8px 12px;gap:8px}
+  .pill i{width:10px}
+  .stage{display:block;padding:2px 0 12px}
+  .plate{width:100%;margin-bottom:14px}
   .aux{display:none}
-  .plate{width:100%;background:rgba(12,7,28,.5)}
+  .plate{background:rgba(12,7,28,.5)}
   h1{font-size:clamp(23px,7.4vw,34px)}
   .ln{white-space:normal}
-  .blurb{font-size:11.5px}
+  .blurb{font-size:11.5px;margin-top:14px}
+  .foot{gap:12px;padding-bottom:12px}
+  .menu{gap:7px}
+  .menu a,.menu button{font-size:11px;letter-spacing:.12em}
+  .spotlight{padding:12px}
+  .spot-grid{grid-template-columns:1fr}
+  .ctarow{gap:8px}
+  .cta{width:100%;text-align:center;justify-content:center}
+  .ticker{margin:8px -16px -16px;padding:8px 0}
 }
 @media (max-height:620px){
-  .blurb{display:none}
+  .blurb{display:block}
   .slug{margin-bottom:14px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -464,9 +487,13 @@ var spotGrid=document.getElementById("spot-grid");
 function renderSpotlight(){
   if(!spotGrid){return;}
   var pin=POSTS.slice(0,3);
+  var now=new Date();
   spotGrid.innerHTML=pin.map(function(p){
+    var d=new Date(p.date+"T00:00:00");
+    var ageDays=Math.floor((now-d)/86400000);
+    var isNew=!isNaN(ageDays) && ageDays>=0 && ageDays<=7;
     return '<a class="spot-card" href="'+p.url+'">'+
-      '<span class="spot-tag">'+(p.tag||"FEATURE")+'</span>'+
+      '<span class="spot-tag">'+(p.tag||"FEATURE")+(isNew?'<b>NEW</b>':'')+'</span>'+
       '<h3>'+p.title+'</h3>'+
       '<p>'+(p.summary||"")+'</p>'+
     '</a>';
