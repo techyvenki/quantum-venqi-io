@@ -41,6 +41,7 @@ A rolling set of links and notes on quantum computing topics.
 
 ## Beginner Track
 
+- [Quantum Learning Path](/quantum-learning-path/)
 - [Quantum Basics](/quantum-basics/)
 - [Linear Algebra Basics](/linear-algebra-basics/)
 

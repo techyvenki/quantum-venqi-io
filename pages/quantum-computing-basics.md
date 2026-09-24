@@ -200,6 +200,9 @@ If you measure one and get 1, the other will be 1.
 3. Study 2-qubit systems and entanglement
 4. Learn circuits and basic algorithms (Deutsch-Jozsa, Grover, QFT)
 
+Want a step-by-step version with detailed beginner explanations and visuals?
+Open [Quantum Learning Path](/quantum-learning-path/).
+
 ## Next step
 
 Continue with [Linear Algebra Basics](/linear-algebra-basics/) because linear algebra is the language of quantum computing.

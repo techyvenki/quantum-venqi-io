@@ -24,6 +24,7 @@ header_pages:
   - pages/about.md
   - pages/research-notes.md
   - pages/quantum-computing-basics.md
+  - pages/quantum-learning-path.md
   - pages/linear-algebra-basics.md
   - pages/component-gallery.md
 
