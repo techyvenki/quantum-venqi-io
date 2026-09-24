@@ -299,6 +299,71 @@
     });
   }
 
+  function initMiniQuizzes() {
+    var quizzes = document.querySelectorAll('[data-component="mini-quiz"]');
+    quizzes.forEach(function (quizEl) {
+      var submitBtn = quizEl.querySelector('[data-role="quiz-submit"]');
+      var resetBtn = quizEl.querySelector('[data-role="quiz-reset"]');
+      var scoreEl = quizEl.querySelector('[data-role="quiz-score"]');
+      var revealEl = quizEl.querySelector('[data-role="quiz-reveal"]');
+      var questions = quizEl.querySelectorAll('[data-quiz-question]');
+
+      function clearMarks() {
+        var options = quizEl.querySelectorAll('.quiz-option');
+        options.forEach(function (opt) {
+          opt.classList.remove('is-correct');
+          opt.classList.remove('is-incorrect');
+        });
+      }
+
+      if (submitBtn) {
+        submitBtn.addEventListener('click', function () {
+          var correct = 0;
+          clearMarks();
+
+          questions.forEach(function (qEl) {
+            var answer = qEl.getAttribute('data-answer');
+            var selected = qEl.querySelector('input[type="radio"]:checked');
+
+            if (!selected) {
+              return;
+            }
+
+            var selectedLabel = selected.closest('.quiz-option');
+            if (selected.value === answer) {
+              correct += 1;
+              if (selectedLabel) selectedLabel.classList.add('is-correct');
+            } else {
+              if (selectedLabel) selectedLabel.classList.add('is-incorrect');
+              var correctInput = qEl.querySelector('input[type="radio"][value="' + answer + '"]');
+              if (correctInput) {
+                var correctLabel = correctInput.closest('.quiz-option');
+                if (correctLabel) correctLabel.classList.add('is-correct');
+              }
+            }
+          });
+
+          if (scoreEl) {
+            scoreEl.textContent = 'Score: ' + correct + ' / ' + questions.length;
+          }
+          if (revealEl) {
+            revealEl.hidden = false;
+          }
+        });
+      }
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function () {
+          var checked = quizEl.querySelectorAll('input[type="radio"]:checked');
+          checked.forEach(function (input) { input.checked = false; });
+          clearMarks();
+          if (scoreEl) scoreEl.textContent = 'Score: -';
+          if (revealEl) revealEl.hidden = true;
+        });
+      }
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initReveal();
     initQubitMeasurement();
@@ -307,5 +372,6 @@
     initTensorMap();
     initAlgorithmMap();
     initProgressTrackers();
+    initMiniQuizzes();
   });
 })();

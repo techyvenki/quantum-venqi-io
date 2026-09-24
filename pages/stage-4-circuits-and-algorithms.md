@@ -12,7 +12,7 @@ next_label: BACK TO LEARNING PATH
 
 This stage combines all previous stages into algorithm-level thinking.
 
-## Big idea in simple English
+## Big Idea (Easy English)
 
 A quantum algorithm is a designed sequence of gates.
 You shape amplitudes, phases, and correlations so measurement is likely to produce useful results.
@@ -71,26 +71,49 @@ Once pattern is clear, deeper math becomes easier to absorb.
 
 ## Mini Quiz
 
-1. Grover is known for:
-A) amplitude amplification
-B) classical sorting
-C) reducing qubit count
+<section class="quiz-box" data-component="mini-quiz" data-quiz-id="stage-4">
+	<div class="quiz-q" data-quiz-question="q1" data-answer="A">
+		<p>1. Grover is known for:</p>
+		<div class="quiz-options">
+			<label class="quiz-option"><input type="radio" name="stage4-q1" value="A"> A) amplitude amplification</label>
+			<label class="quiz-option"><input type="radio" name="stage4-q1" value="B"> B) classical sorting</label>
+			<label class="quiz-option"><input type="radio" name="stage4-q1" value="C"> C) reducing qubit count</label>
+		</div>
+	</div>
 
-2. Deutsch-Jozsa primarily teaches:
-A) oracle-based algorithm structure
-B) quantum error correction
-C) hardware calibration
+	<div class="quiz-q" data-quiz-question="q2" data-answer="A">
+		<p>2. Deutsch-Jozsa primarily teaches:</p>
+		<div class="quiz-options">
+			<label class="quiz-option"><input type="radio" name="stage4-q2" value="A"> A) oracle-based algorithm structure</label>
+			<label class="quiz-option"><input type="radio" name="stage4-q2" value="B"> B) quantum error correction</label>
+			<label class="quiz-option"><input type="radio" name="stage4-q2" value="C"> C) hardware calibration</label>
+		</div>
+	</div>
 
-3. QFT is most connected to:
-A) phase and frequency structure
-B) memory allocation
-C) network routing
+	<div class="quiz-q" data-quiz-question="q3" data-answer="A">
+		<p>3. QFT is most connected to:</p>
+		<div class="quiz-options">
+			<label class="quiz-option"><input type="radio" name="stage4-q3" value="A"> A) phase and frequency structure</label>
+			<label class="quiz-option"><input type="radio" name="stage4-q3" value="B"> B) memory allocation</label>
+			<label class="quiz-option"><input type="radio" name="stage4-q3" value="C"> C) network routing</label>
+		</div>
+	</div>
 
-### Quiz answers
+	<div class="quiz-actions">
+		<button type="button" class="quiz-submit" data-role="quiz-submit">SUBMIT QUIZ</button>
+		<button type="button" class="quiz-reset" data-role="quiz-reset">RESET</button>
+		<span class="quiz-score" data-role="quiz-score">Score: -</span>
+	</div>
 
-1. A
-2. A
-3. A
+	<div class="quiz-reveal" data-role="quiz-reveal" hidden>
+		<h4>REVEAL ANSWERS</h4>
+		<ol>
+			<li>A</li>
+			<li>A</li>
+			<li>A</li>
+		</ol>
+	</div>
+</section>
 
 ## Next
 

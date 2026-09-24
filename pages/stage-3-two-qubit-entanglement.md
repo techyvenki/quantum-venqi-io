@@ -13,7 +13,7 @@ next_label: STAGE 4 - CIRCUITS AND ALGORITHMS
 Now we step into multi-qubit thinking.
 This is where quantum behavior becomes more interesting.
 
-## Big idea in simple English
+## Big Idea (Easy English)
 
 With two qubits, you do not just track two separate values.
 You track one combined state space:
@@ -61,26 +61,49 @@ If Stage 3 clicks, algorithm design in Stage 4 becomes easier to understand.
 
 ## Mini Quiz
 
-1. Two qubits have how many basis states?
-A) 2
-B) 3
-C) 4
+<section class="quiz-box" data-component="mini-quiz" data-quiz-id="stage-3">
+	<div class="quiz-q" data-quiz-question="q1" data-answer="C">
+		<p>1. Two qubits have how many basis states?</p>
+		<div class="quiz-options">
+			<label class="quiz-option"><input type="radio" name="stage3-q1" value="A"> A) 2</label>
+			<label class="quiz-option"><input type="radio" name="stage3-q1" value="B"> B) 3</label>
+			<label class="quiz-option"><input type="radio" name="stage3-q1" value="C"> C) 4</label>
+		</div>
+	</div>
 
-2. Entanglement means:
-A) each qubit is always independent
-B) combined state may not be separable
-C) no measurement is possible
+	<div class="quiz-q" data-quiz-question="q2" data-answer="B">
+		<p>2. Entanglement means:</p>
+		<div class="quiz-options">
+			<label class="quiz-option"><input type="radio" name="stage3-q2" value="A"> A) each qubit is always independent</label>
+			<label class="quiz-option"><input type="radio" name="stage3-q2" value="B"> B) combined state may not be separable</label>
+			<label class="quiz-option"><input type="radio" name="stage3-q2" value="C"> C) no measurement is possible</label>
+		</div>
+	</div>
 
-3. Tensor product is used to:
-A) combine subsystem state spaces
-B) reduce qubit count
-C) remove measurement randomness
+	<div class="quiz-q" data-quiz-question="q3" data-answer="A">
+		<p>3. Tensor product is used to:</p>
+		<div class="quiz-options">
+			<label class="quiz-option"><input type="radio" name="stage3-q3" value="A"> A) combine subsystem state spaces</label>
+			<label class="quiz-option"><input type="radio" name="stage3-q3" value="B"> B) reduce qubit count</label>
+			<label class="quiz-option"><input type="radio" name="stage3-q3" value="C"> C) remove measurement randomness</label>
+		</div>
+	</div>
 
-### Quiz answers
+	<div class="quiz-actions">
+		<button type="button" class="quiz-submit" data-role="quiz-submit">SUBMIT QUIZ</button>
+		<button type="button" class="quiz-reset" data-role="quiz-reset">RESET</button>
+		<span class="quiz-score" data-role="quiz-score">Score: -</span>
+	</div>
 
-1. C
-2. B
-3. A
+	<div class="quiz-reveal" data-role="quiz-reveal" hidden>
+		<h4>REVEAL ANSWERS</h4>
+		<ol>
+			<li>C</li>
+			<li>B</li>
+			<li>A</li>
+		</ol>
+	</div>
+</section>
 
 ## Next
 

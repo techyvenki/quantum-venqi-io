@@ -12,7 +12,7 @@ next_label: STAGE 2 - GATE OPERATIONS
 
 This lesson is your foundation. If Stage 1 is clear, all later stages become easier.
 
-## Big idea in simple English
+## Big Idea (Easy English)
 
 A qubit is not just 0 or 1 before you measure it.
 It stores a probability pattern that can become 0 or 1 when measured.
@@ -76,26 +76,49 @@ How to read this visual:
 
 ## Mini Quiz
 
-1. A qubit in superposition gives what at measurement time?
-A) both 0 and 1
-B) a single outcome, 0 or 1
-C) no outcome
+<section class="quiz-box" data-component="mini-quiz" data-quiz-id="stage-1">
+	<div class="quiz-q" data-quiz-question="q1" data-answer="B">
+		<p>1. A qubit in superposition gives what at measurement time?</p>
+		<div class="quiz-options">
+			<label class="quiz-option"><input type="radio" name="stage1-q1" value="A"> A) both 0 and 1</label>
+			<label class="quiz-option"><input type="radio" name="stage1-q1" value="B"> B) a single outcome, 0 or 1</label>
+			<label class="quiz-option"><input type="radio" name="stage1-q1" value="C"> C) no outcome</label>
+		</div>
+	</div>
 
-2. Which equation must always hold for one qubit?
-A) `alpha + beta = 1`
-B) `|alpha| + |beta| = 1`
-C) `|alpha|^2 + |beta|^2 = 1`
+	<div class="quiz-q" data-quiz-question="q2" data-answer="C">
+		<p>2. Which equation must always hold for one qubit?</p>
+		<div class="quiz-options">
+			<label class="quiz-option"><input type="radio" name="stage1-q2" value="A"> A) <code>alpha + beta = 1</code></label>
+			<label class="quiz-option"><input type="radio" name="stage1-q2" value="B"> B) <code>|alpha| + |beta| = 1</code></label>
+			<label class="quiz-option"><input type="radio" name="stage1-q2" value="C"> C) <code>|alpha|^2 + |beta|^2 = 1</code></label>
+		</div>
+	</div>
 
-3. The Bloch sphere mainly helps with:
-A) visual intuition
-B) file storage
-C) circuit compilation
+	<div class="quiz-q" data-quiz-question="q3" data-answer="A">
+		<p>3. The Bloch sphere mainly helps with:</p>
+		<div class="quiz-options">
+			<label class="quiz-option"><input type="radio" name="stage1-q3" value="A"> A) visual intuition</label>
+			<label class="quiz-option"><input type="radio" name="stage1-q3" value="B"> B) file storage</label>
+			<label class="quiz-option"><input type="radio" name="stage1-q3" value="C"> C) circuit compilation</label>
+		</div>
+	</div>
 
-### Quiz answers
+	<div class="quiz-actions">
+		<button type="button" class="quiz-submit" data-role="quiz-submit">SUBMIT QUIZ</button>
+		<button type="button" class="quiz-reset" data-role="quiz-reset">RESET</button>
+		<span class="quiz-score" data-role="quiz-score">Score: -</span>
+	</div>
 
-1. B
-2. C
-3. A
+	<div class="quiz-reveal" data-role="quiz-reveal" hidden>
+		<h4>REVEAL ANSWERS</h4>
+		<ol>
+			<li>B</li>
+			<li>C</li>
+			<li>A</li>
+		</ol>
+	</div>
+</section>
 
 ## Next
 
