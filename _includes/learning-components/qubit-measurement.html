@@ -1,0 +1,25 @@
+<section class="interactive-box reveal" data-component="qubit-measurement">
+  <h3 class="interactive-title">QUBIT MEASUREMENT SIM</h3>
+  <p class="interactive-note">Move theta to change amplitudes. We show probabilities from cos^2(theta/2) and sin^2(theta/2).</p>
+
+  <div class="sim-row">
+    <div>
+      <label class="bar-label">THETA (degrees)</label>
+      <input class="sim-slider" data-role="theta-slider" type="range" min="0" max="180" value="90" step="1">
+    </div>
+    <div class="sim-value" data-role="theta-value">theta = 90 degrees</div>
+  </div>
+
+  <div class="sim-bars" style="margin-top:0.7rem">
+    <div class="bar-wrap">
+      <div class="bar-label">P(0)</div>
+      <div class="bar"><span data-role="p0-bar" style="width:50%"></span></div>
+      <div class="bar-label" data-role="p0-text" style="margin-top:0.35rem">0.500</div>
+    </div>
+    <div class="bar-wrap">
+      <div class="bar-label">P(1)</div>
+      <div class="bar"><span data-role="p1-bar" style="width:50%"></span></div>
+      <div class="bar-label" data-role="p1-text" style="margin-top:0.35rem">0.500</div>
+    </div>
+  </div>
+</section>

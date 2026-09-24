@@ -104,6 +104,8 @@ Example:
 
 Quantum gates apply this same idea to state vectors.
 
+{% include learning-components/vector-transform.html %}
+
 ## 6) Eigenvalues and eigenvectors
 
 An eigenvector of matrix A is a non-zero vector v such that:
@@ -159,6 +161,8 @@ Example:
 `|0> (x) |1> = [1, 0] (x) [0, 1] = [0, 1, 0, 0] = |01>`
 
 This is how multi-qubit states are represented.
+
+{% include learning-components/tensor-map.html %}
 
 ## 9) Unitary matrices (quantum gates)
 

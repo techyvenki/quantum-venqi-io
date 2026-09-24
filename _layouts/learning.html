@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/learning-components.css">
   <style>
     :root {
       --void: #05040a;
@@ -385,6 +386,7 @@
       .reveal { opacity: 1; transform: none; transition: none; }
     }
   </style>
+  {% include learning-components/styles.html %}
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -449,36 +451,6 @@
 
     <footer>venqi.io · VISUAL LEARNING NOTES</footer>
   </div>
-
-  <script>
-    (function(){
-      var blocks = document.querySelectorAll('.hero, .content h2, .content h3, .content p, .content ul, .content ol, .content pre, .content .viz-grid, .panel');
-      for (var i = 0; i < blocks.length; i++) {
-        if (!blocks[i].classList.contains('reveal')) {
-          blocks[i].classList.add('reveal');
-        }
-      }
-
-      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        for (var j = 0; j < blocks.length; j++) {
-          blocks[j].classList.add('show');
-        }
-        return;
-      }
-
-      var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(entry){
-          if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
-
-      for (var k = 0; k < blocks.length; k++) {
-        io.observe(blocks[k]);
-      }
-    })();
-  </script>
+  <script src="/assets/js/learning-components.js" defer></script>
 </body>
 </html>

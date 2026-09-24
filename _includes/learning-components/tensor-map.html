@@ -1,0 +1,42 @@
+<section class="interactive-box reveal" data-component="tensor-map">
+  <h3 class="interactive-title">TENSOR PRODUCT MAPPING</h3>
+  <p class="interactive-note">Select each qubit basis state and watch the output basis index pulse.</p>
+
+  <div class="sim-row">
+    <div>
+      <label class="bar-label">FIRST QUBIT</label>
+      <select data-role="tensor-q1" class="sim-slider" style="accent-color:unset;height:34px">
+        <option value="0" selected>|0></option>
+        <option value="1">|1></option>
+      </select>
+    </div>
+    <div>
+      <label class="bar-label">SECOND QUBIT</label>
+      <select data-role="tensor-q2" class="sim-slider" style="accent-color:unset;height:34px">
+        <option value="0" selected>|0></option>
+        <option value="1">|1></option>
+      </select>
+    </div>
+    <div class="sim-value" data-role="tensor-output">|0> (x) |0> = |00></div>
+  </div>
+
+  <div class="sim-canvas" style="margin-top:0.7rem">
+    <svg viewBox="0 0 420 170" role="img" aria-label="Tensor basis mapping diagram">
+      <rect x="16" y="56" width="88" height="58" rx="12" fill="rgba(123,92,255,0.18)" stroke="rgba(180,165,255,0.45)"/>
+      <rect x="118" y="56" width="88" height="58" rx="12" fill="rgba(123,92,255,0.18)" stroke="rgba(180,165,255,0.45)"/>
+      <rect x="316" y="18" width="88" height="130" rx="12" fill="rgba(56,232,208,0.08)" stroke="rgba(56,232,208,0.48)"/>
+
+      <text x="46" y="88" fill="#ece8f7" font-size="13">q1</text>
+      <text x="148" y="88" fill="#ece8f7" font-size="13">q2</text>
+      <text x="334" y="40" fill="#ece8f7" font-size="12">|00></text>
+      <text x="334" y="69" fill="#ece8f7" font-size="12">|01></text>
+      <text x="334" y="98" fill="#ece8f7" font-size="12">|10></text>
+      <text x="334" y="127" fill="#ece8f7" font-size="12">|11></text>
+
+      <line x1="104" y1="84" x2="316" y2="40" stroke="rgba(180,165,255,0.28)"/>
+      <line x1="206" y1="84" x2="316" y2="40" stroke="rgba(180,165,255,0.28)"/>
+
+      <circle data-role="tensor-pulse" cx="328" cy="40" r="6" fill="#38e8d0"/>
+    </svg>
+  </div>
+</section>

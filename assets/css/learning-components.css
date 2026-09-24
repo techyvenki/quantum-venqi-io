@@ -1,0 +1,37 @@
+/* Shared component system for learning pages.
+   Future pages can reuse interactive blocks with one include line. */
+.learning-stack {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.learning-callout {
+  border: 1px dashed rgba(180,165,255,0.36);
+  border-radius: 14px;
+  background: rgba(123,92,255,0.08);
+  padding: 0.8rem;
+  color: #ece8f7;
+}
+
+.learning-callout strong {
+  color: #38e8d0;
+  letter-spacing: 0.06em;
+  font-size: 0.82rem;
+}
+
+.interactive-box select {
+  width: 100%;
+  border-radius: 9px;
+  border: 1px solid rgba(180,165,255,0.36);
+  background: rgba(10,6,24,0.9);
+  color: #ece8f7;
+  padding: 0.38rem 0.45rem;
+  font-family: inherit;
+}
+
+.interactive-box select:focus-visible,
+.interactive-box input:focus-visible,
+.interactive-box button:focus-visible {
+  outline: 2px solid rgba(56,232,208,0.8);
+  outline-offset: 2px;
+}

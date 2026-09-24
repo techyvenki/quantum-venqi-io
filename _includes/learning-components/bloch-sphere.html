@@ -1,0 +1,22 @@
+<section class="interactive-box reveal" data-component="bloch-sphere">
+  <h3 class="interactive-title">ANIMATED BLOCH SPHERE MAP</h3>
+  <p class="interactive-note">The cyan vector rotates to show state movement on the sphere surface.</p>
+
+  <div class="sim-canvas">
+    <svg viewBox="0 0 420 270" role="img" aria-label="Animated Bloch sphere diagram">
+      <defs>
+        <radialGradient id="sphereGlow" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="rgba(123,92,255,0.55)"/>
+          <stop offset="100%" stop-color="rgba(13,8,28,0.2)"/>
+        </radialGradient>
+      </defs>
+      <ellipse cx="210" cy="135" rx="95" ry="95" fill="url(#sphereGlow)" stroke="rgba(180,165,255,0.45)" stroke-width="1.8"/>
+      <ellipse cx="210" cy="135" rx="95" ry="36" fill="none" stroke="rgba(180,165,255,0.28)" stroke-width="1.2"/>
+      <line x1="210" y1="36" x2="210" y2="234" stroke="rgba(180,165,255,0.24)" stroke-width="1"/>
+      <text x="221" y="52" fill="#ded8ef" font-size="11">|0></text>
+      <text x="221" y="228" fill="#ded8ef" font-size="11">|1></text>
+      <line data-role="bloch-vector" x1="210" y1="135" x2="278" y2="92" stroke="#38e8d0" stroke-width="3" stroke-linecap="round"/>
+      <circle data-role="bloch-tip" cx="278" cy="92" r="5" fill="#38e8d0"/>
+    </svg>
+  </div>
+</section>

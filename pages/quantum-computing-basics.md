@@ -83,6 +83,8 @@ Where:
 	</div>
 </div>
 
+{% include learning-components/qubit-measurement.html %}
+
 ## How to represent a qubit
 
 ### 1) Algebraic form
@@ -127,6 +129,8 @@ Any single-qubit pure state can be viewed as a point on a sphere:
 - Points in between are superpositions
 
 This is a geometric picture that helps build intuition.
+
+{% include learning-components/bloch-sphere.html %}
 
 ## Measurement in simple terms
 
@@ -180,6 +184,8 @@ Example Bell state:
 
 If you measure one qubit and get 0, the other will be 0.
 If you measure one and get 1, the other will be 1.
+
+{% include learning-components/tensor-map.html %}
 
 ## Common beginner mistakes
 
