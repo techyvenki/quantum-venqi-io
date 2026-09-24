@@ -148,6 +148,8 @@
       var q2 = card.querySelector('[data-role="tensor-q2"]');
       var output = card.querySelector('[data-role="tensor-output"]');
       var pulse = card.querySelector('[data-role="tensor-pulse"]');
+      var link1 = card.querySelector('[data-role="tensor-link-1"]');
+      var link2 = card.querySelector('[data-role="tensor-link-2"]');
 
       var yByState = {
         '00': 40,
@@ -156,11 +158,36 @@
         '11': 127
       };
 
+      var currentY = Number(pulse.getAttribute('cy')) || 40;
+
+      function animateToY(targetY) {
+        var startY = currentY;
+        var frames = 16;
+        var i = 0;
+
+        function tick() {
+          i += 1;
+          var p = i / frames;
+          var y = startY + (targetY - startY) * p;
+          currentY = y;
+
+          pulse.setAttribute('cy', String(y.toFixed(2)));
+          link1.setAttribute('y2', String(y.toFixed(2)));
+          link2.setAttribute('y2', String(y.toFixed(2)));
+
+          if (i < frames) {
+            requestAnimationFrame(tick);
+          }
+        }
+
+        requestAnimationFrame(tick);
+      }
+
       function update() {
         var s = q1.value + q2.value;
         output.textContent = '|'+ q1.value + '> (x) |' + q2.value + '> = |' + s + '>';
         var y = yByState[s];
-        pulse.setAttribute('cy', String(y));
+        animateToY(y);
       }
 
       q1.addEventListener('change', update);

@@ -281,6 +281,10 @@ h1{
   font-size:12px;
   line-height:1;
   opacity:.7;
+  flex:0 0 auto;
+  white-space:nowrap;
+  min-width:14px;
+  text-align:right;
   transition:transform .2s,opacity .2s;
 }
 .spot-card:hover .spot-arrow,.spot-card:focus-visible .spot-arrow{transform:translateX(2px);opacity:1}
@@ -678,7 +682,7 @@ function renderSpotlight(){
     var isNew=!isNaN(ageDays) && ageDays>=0 && ageDays<=7;
     return '<a class="spot-card" href="'+p.url+'">'+
       '<span class="spot-tag">'+(p.tag||"FEATURE")+(isNew?'<b>NEW</b>':'')+'</span>'+
-      '<div class="spot-title-row"><h3>'+p.title+'</h3><span class="spot-arrow" aria-hidden="true">-></span></div>'+
+      '<div class="spot-title-row"><h3>'+p.title+'</h3><span class="spot-arrow" aria-hidden="true">↗</span></div>'+
       '<p class="spot-summary">'+(p.summary||"")+'</p>'+
       '<div class="spot-meta"><span>'+when+'</span><span>'+(p.read||"READ")+'</span>'+(p.pinned?'<span class="spot-pin">PINNED</span>':'')+'</div>'+
     '</a>';
