@@ -250,8 +250,37 @@ h1{
   color:#fff;font-size:8px;letter-spacing:.18em;font-weight:600;
   box-shadow:0 0 14px rgba(56,232,208,.3);
 }
-.spot-card h3{margin:0 0 8px;font-size:12px;letter-spacing:.08em;line-height:1.5}
-.spot-card p{margin:0;color:var(--dim);font-size:10.5px;line-height:1.7}
+.spot-card h3{margin:0;font-size:12px;letter-spacing:.08em;line-height:1.5}
+.spot-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px}
+.spot-arrow{
+  color:var(--spin);
+  font-size:12px;
+  line-height:1;
+  opacity:.7;
+  transition:transform .2s,opacity .2s;
+}
+.spot-card:hover .spot-arrow,.spot-card:focus-visible .spot-arrow{transform:translateX(2px);opacity:1}
+.spot-summary{
+  margin:0;color:var(--dim);font-size:10.5px;line-height:1.7;
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;
+  min-height:3.4em;
+}
+.spot-meta{
+  margin-top:8px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:var(--dim);
+  font-size:8.5px;
+  letter-spacing:.16em;
+}
+.spot-pin{
+  border:1px solid rgba(255,95,162,.42);
+  color:#ffd2e6;
+  border-radius:999px;
+  padding:1px 6px;
+  letter-spacing:.14em;
+}
 
 .cta{
   align-self:flex-start;margin-top:4px;
@@ -476,6 +505,7 @@ var POSTS = [
     tag:   "QUBITS & GATES",
     read:  "10 min",
     url:   "/quantum-basics/",
+    pinned: true,
     summary: "A practical beginner guide to what quantum computing is, how qubits work, and how states are represented."
   },
   {
@@ -601,12 +631,14 @@ function renderSpotlight(){
   var now=new Date();
   spotGrid.innerHTML=pin.map(function(p){
     var d=new Date(p.date+"T00:00:00");
+    var when=isNaN(d)?p.date:d.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
     var ageDays=Math.floor((now-d)/86400000);
     var isNew=!isNaN(ageDays) && ageDays>=0 && ageDays<=7;
     return '<a class="spot-card" href="'+p.url+'">'+
       '<span class="spot-tag">'+(p.tag||"FEATURE")+(isNew?'<b>NEW</b>':'')+'</span>'+
-      '<h3>'+p.title+'</h3>'+
-      '<p>'+(p.summary||"")+'</p>'+
+      '<div class="spot-title-row"><h3>'+p.title+'</h3><span class="spot-arrow" aria-hidden="true">-></span></div>'+
+      '<p class="spot-summary">'+(p.summary||"")+'</p>'+
+      '<div class="spot-meta"><span>'+when+'</span><span>'+(p.read||"READ")+'</span>'+(p.pinned?'<span class="spot-pin">PINNED</span>':'')+'</div>'+
     '</a>';
   }).join("");
 }
