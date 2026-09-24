@@ -34,6 +34,8 @@ Read each stage in order, try the visual block, then move to the next stage.
 
 ## 1) Learn single qubit states and measurement
 
+Deep-dive lesson: [Stage 1 - Single Qubit and Measurement](/learn/stage-1-single-qubit-measurement/)
+
 Think of one qubit as a dial that can point to many positions before you read it.
 But when you finally read it (measure it), you only get one answer: `0` or `1`.
 
@@ -57,6 +59,8 @@ Why this matters:
 {% include learning-components/bloch-sphere.html %}
 
 ## 2) Practice gate operations on state vectors
+
+Deep-dive lesson: [Stage 2 - Gate Operations on State Vectors](/learn/stage-2-gate-operations/)
 
 A gate is just a rule that transforms the current state vector.
 
@@ -83,6 +87,8 @@ Why this matters:
 
 ## 3) Study 2-qubit systems and entanglement
 
+Deep-dive lesson: [Stage 3 - Two Qubits and Entanglement](/learn/stage-3-two-qubit-entanglement/)
+
 When you move from 1 qubit to 2 qubits, the state space gets much bigger.
 You now represent joint states like `|00>`, `|01>`, `|10>`, `|11>`.
 
@@ -102,6 +108,8 @@ Why this matters:
 {% include learning-components/tensor-map.html %}
 
 ## 4) Learn circuits and basic algorithms (Deutsch-Jozsa, Grover, QFT)
+
+Deep-dive lesson: [Stage 4 - Circuits and Basic Algorithms](/learn/stage-4-circuits-and-algorithms/)
 
 Now combine everything into circuit-level thinking.
 
@@ -135,6 +143,10 @@ Why this matters:
 
 ## Next pages
 
+- [Stage 1 - Single Qubit and Measurement](/learn/stage-1-single-qubit-measurement/)
+- [Stage 2 - Gate Operations on State Vectors](/learn/stage-2-gate-operations/)
+- [Stage 3 - Two Qubits and Entanglement](/learn/stage-3-two-qubit-entanglement/)
+- [Stage 4 - Circuits and Basic Algorithms](/learn/stage-4-circuits-and-algorithms/)
 - [Quantum Basics](/quantum-basics/)
 - [Linear Algebra Basics](/linear-algebra-basics/)
 - [Research Notes](/research-notes/)
