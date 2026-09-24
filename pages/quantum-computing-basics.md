@@ -1,10 +1,31 @@
 ---
-layout: page
+layout: learning
 title: Quantum Basics
 permalink: /quantum-basics/
+kicker: FOUNDATION TRACK
+subtitle: Learn qubits with visual intuition first, then map every idea to the math form you will use in circuits.
+topic: QUANTUM
+reading_time: 12 MIN
+next_page: /linear-algebra-basics/
+next_label: LINEAR ALGEBRA BASICS
 ---
 
 A beginner-friendly guide to quantum computing fundamentals.
+
+<div class="viz-grid">
+	<div class="viz-card">
+		<h4>BIT</h4>
+		<p>Classical bit chooses one state: 0 or 1.</p>
+	</div>
+	<div class="viz-card">
+		<h4>QUBIT</h4>
+		<p>Qubit evolves across amplitudes until measured.</p>
+	</div>
+	<div class="viz-card">
+		<h4>MEASUREMENT</h4>
+		<p>Probabilities become a single classical outcome.</p>
+	</div>
+</div>
 
 ## What is quantum computing?
 
@@ -31,44 +52,71 @@ It is not a replacement for all classical computing.
 
 A qubit has two basis states:
 
-- |0>
-- |1>
+- `|0>`
+- `|1>`
 
 A general qubit state is written as:
 
+```text
 |psi> = alpha|0> + beta|1>
+```
 
 Where:
 
 - alpha and beta are complex numbers called amplitudes
-- |alpha|^2 is probability of measuring 0
-- |beta|^2 is probability of measuring 1
-- |alpha|^2 + |beta|^2 = 1
+- `|alpha|^2` is probability of measuring 0
+- `|beta|^2` is probability of measuring 1
+- `|alpha|^2 + |beta|^2 = 1`
+
+<div class="viz-grid">
+	<div class="viz-card">
+		<h4>ALPHA</h4>
+		<p>Amplitude on `|0>`, controls probability for 0.</p>
+	</div>
+	<div class="viz-card">
+		<h4>BETA</h4>
+		<p>Amplitude on `|1>`, controls probability for 1.</p>
+	</div>
+	<div class="viz-card">
+		<h4>NORMALIZATION</h4>
+		<p>Total probability must stay exactly 1.</p>
+	</div>
+</div>
 
 ## How to represent a qubit
 
 ### 1) Algebraic form
 
+```text
 |psi> = alpha|0> + beta|1>
+```
 
 Example:
 
+```text
 |psi> = (1/sqrt(2))|0> + (1/sqrt(2))|1>
+```
 
 This gives 50 percent chance of 0 and 50 percent chance of 1 when measured.
 
 ### 2) Vector form
 
+```text
 |0> = [1, 0]^T
 |1> = [0, 1]^T
+```
 
 So:
 
+```text
 |psi> = [alpha, beta]^T
+```
 
 Example:
 
+```text
 |psi> = [1/sqrt(2), 1/sqrt(2)]^T
+```
 
 ### 3) Bloch sphere intuition
 
@@ -101,10 +149,25 @@ Important single-qubit gates:
 
 Example sequence:
 
-1. Start in |0>
+1. Start in `|0>`
 2. Apply H gate
-3. State becomes (|0> + |1>)/sqrt(2)
+3. State becomes `(|0> + |1>)/sqrt(2)`
 4. Measure to get 0 or 1 with equal probability
+
+<div class="viz-grid">
+	<div class="viz-card">
+		<h4>X GATE</h4>
+		<p>Bit-flip action: `|0>` to `|1>`, `|1>` to `|0>`.</p>
+	</div>
+	<div class="viz-card">
+		<h4>H GATE</h4>
+		<p>Creates balanced superposition from a basis state.</p>
+	</div>
+	<div class="viz-card">
+		<h4>Z GATE</h4>
+		<p>Leaves 0 unchanged, rotates phase on 1.</p>
+	</div>
+</div>
 
 ## Two-qubit glimpse: entanglement
 

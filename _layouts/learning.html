@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #05040a;
+      --deep: #150b2e;
+      --phase: #7b5cff;
+      --spin: #38e8d0;
+      --flare: #ff5fa2;
+      --ink: #ece8f7;
+      --dim: rgba(236,232,247,0.68);
+      --glass: rgba(123,92,255,0.08);
+      --edge: rgba(180,165,255,0.28);
+      --max: 1080px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+      background: radial-gradient(120% 90% at 15% 100%, rgba(123,92,255,0.38) 0%, rgba(123,92,255,0) 62%),
+                  radial-gradient(90% 70% at 100% 0%, rgba(56,232,208,0.14) 0%, rgba(56,232,208,0) 60%),
+                  linear-gradient(180deg, #05040a 0%, #0a0718 45%, #05040a 100%);
+      color: var(--ink);
+      min-height: 100dvh;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.06;
+      background-image: radial-gradient(rgba(255,255,255,0.18) 0.6px, transparent 0.6px);
+      background-size: 3px 3px;
+    }
+
+    .orb {
+      position: fixed;
+      width: 42vmax;
+      height: 42vmax;
+      border-radius: 999px;
+      filter: blur(56px);
+      pointer-events: none;
+      z-index: -1;
+      animation: drift 12s ease-in-out infinite alternate;
+      opacity: 0.26;
+    }
+
+    .orb.a { background: #7b5cff; top: -8vmax; right: -10vmax; }
+    .orb.b { background: #38e8d0; bottom: -16vmax; left: -12vmax; animation-delay: 0.8s; }
+
+    @keyframes drift {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      100% { transform: translate3d(2vmax, -1.6vmax, 0) scale(1.08); }
+    }
+
+    .shell {
+      width: min(var(--max), calc(100% - 2.2rem));
+      margin: 0 auto;
+      padding: 1.4rem 0 4rem;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .brand {
+      font-family: "Martian Mono", monospace;
+      letter-spacing: 0.04em;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .brand small {
+      display: block;
+      margin-top: 0.25rem;
+      color: var(--dim);
+      font-size: 0.62rem;
+      letter-spacing: 0.24em;
+      font-weight: 500;
+    }
+
+    .links {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .links a {
+      text-decoration: none;
+      color: var(--ink);
+      border: 1px solid var(--edge);
+      background: rgba(24,13,52,0.56);
+      padding: 0.48rem 0.86rem;
+      border-radius: 999px;
+      font-size: 0.64rem;
+      letter-spacing: 0.14em;
+      transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+    }
+
+    .links a:hover,
+    .links a:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(56,232,208,0.6);
+      box-shadow: 0 0 22px rgba(56,232,208,0.24);
+    }
+
+    .hero {
+      border: 1px solid var(--edge);
+      border-radius: 22px;
+      background: linear-gradient(160deg, rgba(17,11,39,0.86), rgba(31,13,63,0.62));
+      box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+      padding: clamp(1.2rem, 3.2vw, 2.2rem);
+      margin-bottom: 1.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56,232,208,0.24), rgba(56,232,208,0));
+      right: -70px;
+      top: -90px;
+      pointer-events: none;
+    }
+
+    .kicker {
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      color: var(--dim);
+      margin-bottom: 0.9rem;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: "Martian Mono", monospace;
+      font-weight: 800;
+      line-height: 1.03;
+      font-size: clamp(1.8rem, 6.4vw, 3.2rem);
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      max-width: 64ch;
+      margin-top: 1rem;
+      color: var(--dim);
+      line-height: 1.7;
+      font-size: 0.92rem;
+    }
+
+    .meta {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      border: 1px solid var(--edge);
+      border-radius: 999px;
+      background: rgba(15,8,33,0.58);
+      padding: 0.38rem 0.72rem;
+      font-size: 0.58rem;
+      letter-spacing: 0.16em;
+      color: #ddd8ee;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(240px, 1fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .content {
+      border: 1px solid var(--edge);
+      border-radius: 18px;
+      background: rgba(18,10,40,0.54);
+      padding: clamp(1rem, 3vw, 1.7rem);
+      backdrop-filter: blur(14px) saturate(130%);
+    }
+
+    .content > :first-child { margin-top: 0; }
+    .content h2 {
+      margin: 1.9rem 0 0.8rem;
+      font-family: "Martian Mono", monospace;
+      font-size: clamp(1rem, 2.4vw, 1.26rem);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .content h3 {
+      margin: 1.2rem 0 0.6rem;
+      font-size: 0.98rem;
+      letter-spacing: 0.02em;
+    }
+
+    .content p,
+    .content li {
+      color: #d6d2e6;
+      font-size: 0.92rem;
+      line-height: 1.74;
+    }
+
+    .content ul,
+    .content ol {
+      margin-top: 0.3rem;
+      padding-left: 1.2rem;
+    }
+
+    .content code {
+      background: rgba(123,92,255,0.16);
+      border: 1px solid rgba(180,165,255,0.2);
+      border-radius: 6px;
+      padding: 0.12rem 0.34rem;
+      color: #f4f0ff;
+      font-size: 0.88em;
+    }
+
+    .content pre {
+      margin: 0.8rem 0;
+      border: 1px solid rgba(180,165,255,0.2);
+      border-radius: 12px;
+      background: rgba(9,5,20,0.8);
+      padding: 0.9rem;
+      overflow: auto;
+    }
+
+    .content pre code {
+      border: 0;
+      background: transparent;
+      padding: 0;
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    .viz-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 0.7rem;
+      margin: 0.8rem 0 1.1rem;
+    }
+
+    .viz-card {
+      border: 1px solid var(--edge);
+      border-radius: 14px;
+      background: linear-gradient(150deg, rgba(123,92,255,0.15), rgba(56,232,208,0.08));
+      padding: 0.8rem;
+      min-height: 110px;
+    }
+
+    .viz-card h4 {
+      margin: 0;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: var(--dim);
+    }
+
+    .viz-card p {
+      margin: 0.45rem 0 0;
+      font-size: 0.9rem;
+      color: #ede9fa;
+    }
+
+    .aside {
+      position: sticky;
+      top: 1rem;
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .panel {
+      border: 1px solid var(--edge);
+      border-radius: 14px;
+      background: rgba(16,10,34,0.68);
+      padding: 0.85rem;
+    }
+
+    .panel h3 {
+      margin: 0 0 0.5rem;
+      font-family: "Martian Mono", monospace;
+      font-size: 0.74rem;
+      letter-spacing: 0.16em;
+      color: #d8d2eb;
+    }
+
+    .meter {
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+      margin-bottom: 0.45rem;
+    }
+
+    .meter span {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--spin), var(--phase));
+      transform-origin: left;
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scaleX(0.34); opacity: 0.8; }
+      50% { transform: scaleX(0.9); opacity: 1; }
+    }
+
+    .equation {
+      border: 1px dashed rgba(180,165,255,0.3);
+      border-radius: 10px;
+      padding: 0.7rem;
+      font-size: 0.84rem;
+      color: #ece7fb;
+      background: rgba(12,7,28,0.74);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 520ms ease, transform 520ms ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .next {
+      margin-top: 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      text-decoration: none;
+      border: 1px solid var(--edge);
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 0.55rem 0.9rem;
+      font-size: 0.66rem;
+      letter-spacing: 0.12em;
+    }
+
+    .next:hover,
+    .next:focus-visible {
+      border-color: rgba(56,232,208,0.6);
+      box-shadow: 0 0 24px rgba(56,232,208,0.2);
+    }
+
+    footer {
+      margin-top: 1.6rem;
+      color: var(--dim);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      .aside { position: static; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .orb, .meter span { animation: none; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="orb a" aria-hidden="true"></div>
+  <div class="orb b" aria-hidden="true"></div>
+
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="/">venqi.io<small>VENKI · QUANTUM</small></a>
+      <nav class="links" aria-label="Page links">
+        <a href="/">HOME</a>
+        <a href="/research-notes/">RESEARCH NOTES</a>
+        <a href="/quantum-basics/">QUANTUM BASICS</a>
+        <a href="/linear-algebra-basics/">LINEAR ALGEBRA</a>
+      </nav>
+    </header>
+
+    <section class="hero reveal">
+      <div class="kicker">{{ page.kicker | default: "LEARNING TRACK" }}</div>
+      <h1>{{ page.title }}</h1>
+      <p class="subtitle">{{ page.subtitle | default: "Animated visual notes designed for quick intuition and practical understanding." }}</p>
+      <div class="meta">
+        <span class="chip">{{ page.topic | default: "QUANTUM" }}</span>
+        <span class="chip">{{ page.reading_time | default: "10 MIN" }}</span>
+        <span class="chip">VISUAL MODE</span>
+      </div>
+    </section>
+
+    <div class="layout">
+      <article class="content" id="content">
+        {{ content }}
+        {% if page.next_page and page.next_label %}
+        <a class="next" href="{{ page.next_page }}">NEXT: {{ page.next_label }} -></a>
+        {% endif %}
+      </article>
+
+      <aside class="aside" aria-label="Visual side panel">
+        <section class="panel reveal">
+          <h3>LIVE INTUITION</h3>
+          <div class="meter"><span></span></div>
+          <div class="meter"><span style="animation-delay:0.35s"></span></div>
+          <div class="meter"><span style="animation-delay:0.7s"></span></div>
+        </section>
+        <section class="panel reveal">
+          <h3>KEY EQUATION</h3>
+          {% if page.topic == "LINEAR ALGEBRA" %}
+          <div class="equation">A v = lambda v</div>
+          <div class="equation" style="margin-top:0.6rem">U^dagger U = I</div>
+          {% else %}
+          <div class="equation">|psi> = alpha|0> + beta|1></div>
+          <div class="equation" style="margin-top:0.6rem">|alpha|^2 + |beta|^2 = 1</div>
+          {% endif %}
+        </section>
+        <section class="panel reveal">
+          <h3>HOW TO USE THIS PAGE</h3>
+          <p style="margin:0;color:#d6d2e6;font-size:0.84rem;line-height:1.65">
+            Scan the visual cards first, then read the section below them. The page reveals each block as you scroll so the ideas stack in sequence.
+          </p>
+        </section>
+      </aside>
+    </div>
+
+    <footer>venqi.io · VISUAL LEARNING NOTES</footer>
+  </div>
+
+  <script>
+    (function(){
+      var blocks = document.querySelectorAll('.hero, .content h2, .content h3, .content p, .content ul, .content ol, .content pre, .content .viz-grid, .panel');
+      for (var i = 0; i < blocks.length; i++) {
+        if (!blocks[i].classList.contains('reveal')) {
+          blocks[i].classList.add('reveal');
+        }
+      }
+
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        for (var j = 0; j < blocks.length; j++) {
+          blocks[j].classList.add('show');
+        }
+        return;
+      }
+
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
+
+      for (var k = 0; k < blocks.length; k++) {
+        io.observe(blocks[k]);
+      }
+    })();
+  </script>
+</body>
+</html>

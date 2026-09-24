@@ -1,10 +1,31 @@
 ---
-layout: page
+layout: learning
 title: Linear Algebra Basics
 permalink: /linear-algebra-basics/
+kicker: FOUNDATION TRACK
+subtitle: The exact math vocabulary needed for quantum computing, explained with short examples and visual anchors.
+topic: LINEAR ALGEBRA
+reading_time: 12 MIN
+next_page: /quantum-basics/
+next_label: QUANTUM BASICS
 ---
 
 A simple guide to the linear algebra ideas needed for quantum computing.
+
+<div class="viz-grid">
+	<div class="viz-card">
+		<h4>STATE</h4>
+		<p>Quantum state is a normalized vector.</p>
+	</div>
+	<div class="viz-card">
+		<h4>GATE</h4>
+		<p>Quantum gate is a unitary matrix transform.</p>
+	</div>
+	<div class="viz-card">
+		<h4>SYSTEM SIZE</h4>
+		<p>Tensor products scale from 1 qubit to many.</p>
+	</div>
+</div>
 
 ## Why linear algebra matters
 
@@ -22,21 +43,21 @@ If you know a few core ideas, quantum concepts become much easier.
 
 Example vector:
 
-v = [2, -1]
+`v = [2, -1]`
 
 Example matrix:
 
-A = [[1, 0], [0, -1]]
+`A = [[1, 0], [0, -1]]`
 
 ## 2) Vector length (norm)
 
 For vector v = [a, b], length is:
 
-||v|| = sqrt(a^2 + b^2)
+`||v|| = sqrt(a^2 + b^2)`
 
 Example:
 
-v = [3, 4] => ||v|| = 5
+`v = [3, 4] => ||v|| = 5`
 
 In quantum computing, state vectors are normalized, so length is 1.
 
@@ -44,16 +65,16 @@ In quantum computing, state vectors are normalized, so length is 1.
 
 For real vectors:
 
-u . v = u1*v1 + u2*v2 + ...
+`u . v = u1*v1 + u2*v2 + ...`
 
 Example:
 
-u = [1, 2], v = [3, 4]
-u . v = 1*3 + 2*4 = 11
+`u = [1, 2], v = [3, 4]`
+`u . v = 1*3 + 2*4 = 11`
 
 For complex vectors (common in quantum), use conjugate transpose:
 
-<u|v>
+`<u|v>`
 
 This value is used for overlaps and probabilities.
 
@@ -63,13 +84,13 @@ A basis is a set of vectors used to represent other vectors.
 
 Standard 2D basis:
 
-- e1 = [1, 0]
-- e2 = [0, 1]
+- `e1 = [1, 0]`
+- `e2 = [0, 1]`
 
 Quantum computational basis for one qubit is the same idea:
 
-- |0> = [1, 0]^T
-- |1> = [0, 1]^T
+- `|0> = [1, 0]^T`
+- `|1> = [0, 1]^T`
 
 ## 5) Matrix-vector multiplication
 
@@ -77,9 +98,9 @@ A matrix transforms a vector.
 
 Example:
 
-A = [[1, 2], [0, 1]], x = [3, 4]
+`A = [[1, 2], [0, 1]], x = [3, 4]`
 
-Ax = [1*3 + 2*4, 0*3 + 1*4] = [11, 4]
+`Ax = [1*3 + 2*4, 0*3 + 1*4] = [11, 4]`
 
 Quantum gates apply this same idea to state vectors.
 
@@ -87,16 +108,31 @@ Quantum gates apply this same idea to state vectors.
 
 An eigenvector of matrix A is a non-zero vector v such that:
 
-Av = lambda v
+`Av = lambda v`
 
 Where lambda is eigenvalue.
 
 Simple example:
 
-A = [[2, 0], [0, 3]]
+`A = [[2, 0], [0, 3]]`
 
-- [1, 0] is eigenvector with eigenvalue 2
-- [0, 1] is eigenvector with eigenvalue 3
+- `[1, 0]` is eigenvector with eigenvalue 2
+- `[0, 1]` is eigenvector with eigenvalue 3
+
+<div class="viz-grid">
+	<div class="viz-card">
+		<h4>EIGENVECTOR</h4>
+		<p>Direction preserved by transform.</p>
+	</div>
+	<div class="viz-card">
+		<h4>EIGENVALUE</h4>
+		<p>Scale factor on that preserved direction.</p>
+	</div>
+	<div class="viz-card">
+		<h4>MEASUREMENT LINK</h4>
+		<p>Observable outcomes map to eigenvalues.</p>
+	</div>
+</div>
 
 In quantum, measurement outcomes connect to eigenvalues of observable operators.
 
@@ -106,7 +142,7 @@ Two vectors are orthogonal if their dot product is 0.
 
 Example:
 
-[1, 0] and [0, 1] are orthogonal.
+`[1, 0]` and `[0, 1]` are orthogonal.
 
 Orthogonal states are distinguishable in measurement.
 
@@ -116,11 +152,11 @@ Tensor product combines systems.
 
 If a = [a1, a2], b = [b1, b2], then:
 
-a (x) b = [a1b1, a1b2, a2b1, a2b2]
+`a (x) b = [a1b1, a1b2, a2b1, a2b2]`
 
 Example:
 
-|0> (x) |1> = [1, 0] (x) [0, 1] = [0, 1, 0, 0] = |01>
+`|0> (x) |1> = [1, 0] (x) [0, 1] = [0, 1, 0, 0] = |01>`
 
 This is how multi-qubit states are represented.
 
@@ -128,7 +164,7 @@ This is how multi-qubit states are represented.
 
 A matrix U is unitary if:
 
-U^dagger U = I
+`U^dagger U = I`
 
 Meaning it preserves vector length and is reversible.
 
@@ -136,21 +172,21 @@ All ideal quantum gates are unitary.
 
 Example Hadamard gate:
 
-H = (1/sqrt(2)) * [[1, 1], [1, -1]]
+`H = (1/sqrt(2)) * [[1, 1], [1, -1]]`
 
 ## 10) Quick practice set
 
-1. Normalize vector [1, 1]
-2. Compute dot product of [2, -1] and [3, 5]
-3. Apply X gate [[0,1],[1,0]] to |0>
-4. Compute |0> (x) |0>
+1. Normalize vector `[1, 1]`
+2. Compute dot product of `[2, -1]` and `[3, 5]`
+3. Apply X gate `[[0,1],[1,0]]` to `|0>`
+4. Compute `|0> (x) |0>`
 
 ## Answers
 
-1. [1/sqrt(2), 1/sqrt(2)]
+1. `[1/sqrt(2), 1/sqrt(2)]`
 2. 1
-3. |1>
-4. |00> = [1, 0, 0, 0]^T
+3. `|1>`
+4. `|00> = [1, 0, 0, 0]^T`
 
 ## Next step
 
