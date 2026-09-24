@@ -21,8 +21,10 @@ minima:
       url: https://github.com/techyvenki
 
 header_pages:
-  - about.md
-  - research-notes.md
+  - pages/about.md
+  - pages/research-notes.md
+  - pages/quantum-computing-basics.md
+  - pages/linear-algebra-basics.md
 
 markdown: kramdown
 permalink: /:categories/:year/:month/:day/:title/

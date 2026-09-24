@@ -17,3 +17,8 @@ A rolling set of links and notes on quantum computing topics.
 
 - Nielsen and Chuang
 - Intro papers on NISQ and near-term applications
+
+## Beginner Track
+
+- [Quantum Basics](/quantum-basics/)
+- [Linear Algebra Basics](/linear-algebra-basics/)
