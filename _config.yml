@@ -25,6 +25,7 @@ header_pages:
   - pages/research-notes.md
   - pages/quantum-computing-basics.md
   - pages/linear-algebra-basics.md
+  - pages/component-gallery.md
 
 markdown: kramdown
 permalink: /:categories/:year/:month/:day/:title/

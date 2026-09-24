@@ -146,21 +146,46 @@ h1{
 .foot{display:flex;flex-direction:column;gap:18px}
 .ask-label{font-size:9.5px;letter-spacing:.28em;color:var(--dim)}
 .menu{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.menu a,
 .menu button{
   appearance:none;background:none;border:0;padding:0;cursor:pointer;
   font:inherit;font-size:11.5px;letter-spacing:.18em;
   color:var(--ink);opacity:.72;
-  display:flex;align-items:center;gap:12px;
+  display:inline-flex;align-items:center;gap:12px;text-decoration:none;
   transition:opacity .18s,color .18s,transform .18s;
 }
+.menu a::before,
 .menu button::before{
   content:"->";color:var(--phase);font-size:11px;
   transition:transform .18s,color .18s;
 }
-.menu button:hover,.menu button:focus-visible{opacity:1;color:#fff;transform:translateX(3px)}
-.menu button:hover::before,.menu button:focus-visible::before{color:var(--spin);transform:translateX(2px)}
-.menu button[aria-pressed="true"]{opacity:1;color:#fff}
-.menu button[aria-pressed="true"]::before{color:var(--flare)}
+.menu a:hover,.menu a:focus-visible,.menu button:hover,.menu button:focus-visible{opacity:1;color:#fff;transform:translateX(3px)}
+.menu a:hover::before,.menu a:focus-visible::before,.menu button:hover::before,.menu button:focus-visible::before{color:var(--spin);transform:translateX(2px)}
+.menu a.is-active,.menu button[aria-pressed="true"]{opacity:1;color:#fff}
+.menu a.is-active::before,.menu button[aria-pressed="true"]::before{color:var(--flare)}
+
+.spotlight{
+  margin-top:2px;padding:16px;border-radius:16px;
+  border:1px solid rgba(180,165,255,.2);
+  background:linear-gradient(160deg,rgba(18,10,40,.58),rgba(30,12,58,.42));
+}
+.spot-head{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:10px}
+.spot-head span{font-size:9px;letter-spacing:.24em;color:var(--dim)}
+.spot-head a{font-size:10px;letter-spacing:.18em;color:var(--spin);text-decoration:none;opacity:.9}
+.spot-head a:hover{opacity:1;color:#fff}
+.spot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+.spot-card{
+  border:1px solid rgba(180,165,255,.2);border-radius:12px;padding:12px;
+  background:rgba(10,6,26,.55);text-decoration:none;color:var(--ink);
+  transition:border-color .2s,transform .2s,box-shadow .2s;
+}
+.spot-card:hover,.spot-card:focus-visible{
+  border-color:rgba(56,232,208,.52);transform:translateY(-2px);
+  box-shadow:0 0 24px rgba(56,232,208,.18);
+}
+.spot-tag{font-size:8.5px;letter-spacing:.2em;color:var(--spin);margin-bottom:8px;display:block}
+.spot-card h3{margin:0 0 8px;font-size:12px;letter-spacing:.08em;line-height:1.5}
+.spot-card p{margin:0;color:var(--dim);font-size:10.5px;line-height:1.7}
 
 .cta{
   align-self:flex-start;margin-top:4px;
@@ -251,7 +276,7 @@ h1{
 }
 @media (prefers-reduced-motion:reduce){
   .ln .ghost{display:none}
-  .menu button{transition:none}
+  .menu button,.menu a{transition:none}
   .ticker div{animation:none}
 }
 </style>
@@ -266,7 +291,7 @@ h1{
   <header class="top">
     <div class="mark">ven<span class="qbit">q</span>i.io<small>VENKI · QUANTUM</small></div>
     <nav class="pill">
-      <a href="#" id="nav-writing">WRITING</a><i></i><a href="mailto:hello@venqi.io">CONTACT</a>
+      <a href="#spotlight" id="nav-latest">LATEST</a><i></i><a href="#" id="nav-writing">ARCHIVE</a><i></i><a href="mailto:hello@venqi.io">CONTACT</a>
     </nav>
   </header>
 
@@ -288,6 +313,13 @@ h1{
   <footer class="foot">
     <div class="ask-label">WHAT ARE YOU LOOKING FOR?</div>
     <ul class="menu" id="menu"></ul>
+    <section class="spotlight" id="spotlight" aria-label="Latest writing spotlight">
+      <div class="spot-head">
+        <span>LATEST TRANSMISSIONS</span>
+        <a href="#" id="open-archive">OPEN ARCHIVE</a>
+      </div>
+      <div class="spot-grid" id="spot-grid"></div>
+    </section>
     <div class="ctarow">
       <button class="cta" id="cta">COLLAPSE THE STATE</button>
       <button class="cta ghost" id="meet" aria-pressed="false">ASSEMBLE VENKI</button>
@@ -337,15 +369,23 @@ var POSTS = [
     url:   "/linear-algebra-basics/",
     summary: "Simple examples of vectors, matrices, tensor products, and unitaries that you need before diving deeper into quantum."
   },
+  {
+    title: "Learning Component Gallery",
+    date:  "2026-09-23",
+    tag:   "AUTHORING KIT",
+    read:  "6 min",
+    url:   "/component-gallery/",
+    summary: "Preview all reusable animated components and copy include snippets while writing new lessons."
+  },
 ];
 
 /* ---------------- content ---------------- */
 var TOPICS = [
-  {label:"QUBITS & GATES",        line:["TWO STATES","AT ONCE"]},
-  {label:"ERROR CORRECTION",      line:["NOISE IS","THE REAL ENEMY"]},
-  {label:"POST-QUANTUM CRYPTO",   line:["RSA HAS","AN EXPIRY DATE"]},
-  {label:"QUANTUM x AI",          line:["TRAINING ON","AMPLITUDES"]},
-  {label:"AN ARCHITECT'S NOTES",  line:["SHIPPED CODE","MEETS PHYSICS"]}
+  {label:"QUBITS & GATES",        line:["TWO STATES","AT ONCE"], url:"/quantum-basics/"},
+  {label:"ERROR CORRECTION",      line:["NOISE IS","THE REAL ENEMY"], url:"/research-notes/"},
+  {label:"POST-QUANTUM CRYPTO",   line:["RSA HAS","AN EXPIRY DATE"], url:"/research-notes/"},
+  {label:"QUANTUM x AI",          line:["TRAINING ON","AMPLITUDES"], url:"/research-notes/"},
+  {label:"AN ARCHITECT'S NOTES",  line:["SHIPPED CODE","MEETS PHYSICS"], url:"/research-notes/"}
 ];
 var HOME = ["SUPERPOSITION","IS NOT MAGIC"];
 
@@ -385,22 +425,29 @@ function setLine(L,text){
 function showLines(pair){ setLine(lines[0],pair[0]); setLine(lines[1],pair[1]); }
 
 /* ---------------- menu ---------------- */
-var menu=document.getElementById("menu"), buttons=[];
+var menu=document.getElementById("menu"), topicLinks=[];
 TOPICS.forEach(function(t,idx){
   var li=document.createElement("li");
-  var b=document.createElement("button");
-  b.type="button"; b.innerHTML=qHTML(t.label); b.setAttribute("aria-pressed","false");
-  b.addEventListener("click",function(){
-    buttons.forEach(function(x){x.setAttribute("aria-pressed","false");});
-    b.setAttribute("aria-pressed","true");
+  var b=document.createElement("a");
+  b.href=t.url||"#";
+  b.innerHTML=qHTML(t.label);
+  b.addEventListener("mouseenter",function(){
     showLines(t.line);
     measure(idx%2===0?1:-1);
   });
-  buttons.push(b); li.appendChild(b); menu.appendChild(li);
+  b.addEventListener("focus",function(){
+    showLines(t.line);
+    measure(idx%2===0?1:-1);
+  });
+  b.addEventListener("click",function(){
+    topicLinks.forEach(function(x){x.classList.remove("is-active");});
+    b.classList.add("is-active");
+  });
+  topicLinks.push(b); li.appendChild(b); menu.appendChild(li);
 });
 
 document.getElementById("cta").addEventListener("click",function(){
-  buttons.forEach(function(x){x.setAttribute("aria-pressed","false");});
+  topicLinks.forEach(function(x){x.classList.remove("is-active");});
   var up=Math.random()<.5;
   showLines(up?["MEASURED","|0>"]:["MEASURED","|1>"]);
   measure(up?1:-1);
@@ -409,6 +456,23 @@ document.getElementById("cta").addEventListener("click",function(){
 document.getElementById("nav-writing").addEventListener("click",function(e){
   e.preventDefault(); openSheet();
 });
+document.getElementById("open-archive").addEventListener("click",function(e){
+  e.preventDefault(); openSheet();
+});
+
+var spotGrid=document.getElementById("spot-grid");
+function renderSpotlight(){
+  if(!spotGrid){return;}
+  var pin=POSTS.slice(0,3);
+  spotGrid.innerHTML=pin.map(function(p){
+    return '<a class="spot-card" href="'+p.url+'">'+
+      '<span class="spot-tag">'+(p.tag||"FEATURE")+'</span>'+
+      '<h3>'+p.title+'</h3>'+
+      '<p>'+(p.summary||"")+'</p>'+
+    '</a>';
+  }).join("");
+}
+renderSpotlight();
 
 /* ---------------- readout ---------------- */
 var bars=document.getElementById("bars");
@@ -762,7 +826,7 @@ meetBtn.addEventListener("click",function(){
     porTarget=0; if(typeof portBtn!=="undefined"){portBtn.setAttribute("aria-pressed","false");portBtn.innerHTML=VENQI_LABEL;}
   }
   col=0;
-  buttons.forEach(function(x){x.setAttribute("aria-pressed","false");});
+  topicLinks.forEach(function(x){x.classList.remove("is-active");});
   showLines(on?["VENKI","QUANTUM NOTES"]:HOME);
   updateFocus();
 });
@@ -777,7 +841,7 @@ machBtn.addEventListener("click",function(){
     figTarget=0; figT=0; col=0;
     meetBtn.setAttribute("aria-pressed","false"); meetBtn.textContent="ASSEMBLE VENKI";
     porTarget=0; if(typeof portBtn!=="undefined"){portBtn.setAttribute("aria-pressed","false");portBtn.innerHTML=VENQI_LABEL;}
-    buttons.forEach(function(x){x.setAttribute("aria-pressed","false");});
+    topicLinks.forEach(function(x){x.classList.remove("is-active");});
   }
   showLines(on?["FIFTEEN","MILLIKELVIN"]:HOME);
   updateFocus();
@@ -819,7 +883,7 @@ portBtn.addEventListener("click",function(){
     figTarget=0; figT=0; machTarget=0; col=0;
     meetBtn.setAttribute("aria-pressed","false"); meetBtn.textContent="ASSEMBLE VENKI";
     machBtn.setAttribute("aria-pressed","false"); machBtn.textContent="THE MACHINE";
-    buttons.forEach(function(x){x.setAttribute("aria-pressed","false");});
+    topicLinks.forEach(function(x){x.classList.remove("is-active");});
   }
   showLines(on?["VENKATESH","DUVVURI"]:HOME);
   updateFocus();
