@@ -240,6 +240,7 @@
       var boxes = groupEl.querySelectorAll('input[type="checkbox"][data-progress-id]');
       var stat = groupEl.querySelector('[data-role="progress-stat"]');
       var bar = groupEl.querySelector('[data-role="progress-bar"]');
+      var resetBtn = groupEl.querySelector('[data-role="progress-reset"]');
 
       var saved = {};
       try {
@@ -280,6 +281,19 @@
           renderStats();
         });
       });
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function () {
+          boxes.forEach(function (box) {
+            box.checked = false;
+          });
+          try {
+            localStorage.removeItem(key);
+          } catch (e) {
+          }
+          renderStats();
+        });
+      }
 
       renderStats();
     });

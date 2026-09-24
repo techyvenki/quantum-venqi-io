@@ -16,7 +16,10 @@ Read each stage in order, try the visual block, then move to the next stage.
 <section class="progress-box" data-progress-group="quantum-path-v1">
   <div class="progress-head">
     <h3 class="progress-title">PATH PROGRESS TRACKER</h3>
-    <span class="progress-stat" data-role="progress-stat">0 of 4 complete</span>
+    <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;justify-content:flex-end">
+      <span class="progress-stat" data-role="progress-stat">0 of 4 complete</span>
+      <button type="button" class="progress-reset" data-role="progress-reset">RESET</button>
+    </div>
   </div>
   <div class="progress-bar-track" aria-hidden="true">
     <div class="progress-bar-fill" data-role="progress-bar"></div>

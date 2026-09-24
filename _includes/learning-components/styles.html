@@ -146,6 +146,25 @@
     letter-spacing: 0.1em;
   }
 
+  .progress-reset {
+    border: 1px solid rgba(180,165,255,0.32);
+    border-radius: 999px;
+    background: rgba(12,7,28,0.74);
+    color: #ece8f7;
+    font: inherit;
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    padding: 0.28rem 0.6rem;
+    cursor: pointer;
+  }
+
+  .progress-reset:hover,
+  .progress-reset:focus-visible {
+    border-color: rgba(56,232,208,0.56);
+    color: #fff;
+    box-shadow: 0 0 12px rgba(56,232,208,0.2);
+  }
+
   .progress-bar-track {
     height: 9px;
     border-radius: 999px;
@@ -181,6 +200,14 @@
     width: 16px;
     height: 16px;
     flex: 0 0 16px;
+  }
+
+  @media (max-width: 520px) {
+    .progress-reset {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      padding: 0.24rem 0.54rem;
+    }
   }
 
   .algo-tabs {
