@@ -38,6 +38,22 @@ It does not mean classical copying or faster-than-light messaging.
 
 {% include learning-components/tensor-map.html %}
 
+## Visual: entanglement network perspective
+
+<section class="stage-visual" aria-label="Entanglement links">
+	<h4>RELATIONSHIP VIEW</h4>
+	<div class="entangle-grid">
+		<div class="entangle-node">|00></div>
+		<div class="entangle-node">|11></div>
+		<div class="entangle-node">|01></div>
+		<div class="entangle-node">|10></div>
+	</div>
+	<div class="entangle-links">
+		<p class="entangle-link">Separable case: outcomes can be described as independent parts.</p>
+		<p class="entangle-link">Entangled case: one compact rule describes joint behavior across both qubits.</p>
+	</div>
+</section>
+
 How to read this visual:
 
 1. Pick first qubit basis value.

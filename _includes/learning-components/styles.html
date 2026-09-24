@@ -452,4 +452,253 @@
     font-size: 0.84rem;
     line-height: 1.6;
   }
+
+  .journey-track {
+    margin: 1rem 0 1.25rem;
+    border: 1px solid rgba(180,165,255,0.28);
+    border-radius: 14px;
+    background: linear-gradient(145deg, rgba(13,8,30,0.86), rgba(10,6,24,0.7));
+    padding: 0.75rem;
+  }
+
+  .journey-track ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.58rem;
+  }
+
+  .journey-step {
+    border: 1px solid rgba(180,165,255,0.2);
+    border-radius: 11px;
+    padding: 0.62rem 0.7rem;
+    background: rgba(20,12,45,0.58);
+  }
+
+  .journey-kicker {
+    margin: 0 0 0.18rem;
+    color: #f2eeff;
+    font-size: 0.74rem;
+    letter-spacing: 0.14em;
+  }
+
+  .journey-copy {
+    margin: 0;
+    color: #cdc6e2;
+    font-size: 0.84rem;
+    line-height: 1.52;
+  }
+
+  .lens-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 0.68rem;
+    margin: 0.85rem 0 1.1rem;
+  }
+
+  .lens-card {
+    border: 1px solid rgba(180,165,255,0.24);
+    border-radius: 12px;
+    background: rgba(15,9,35,0.7);
+    padding: 0.68rem;
+  }
+
+  .lens-label {
+    margin: 0 0 0.35rem;
+    color: #efeafd;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+  }
+
+  .lens-card p {
+    margin: 0;
+    color: #d3cde4;
+    font-size: 0.83rem;
+    line-height: 1.56;
+  }
+
+  .concept-prism {
+    margin: 0.9rem 0 1.1rem;
+    border: 1px solid rgba(180,165,255,0.24);
+    border-radius: 13px;
+    background: rgba(12,7,28,0.75);
+    overflow: hidden;
+  }
+
+  .concept-prism-row {
+    display: grid;
+    grid-template-columns: 132px 1fr;
+    gap: 0.65rem;
+    padding: 0.58rem 0.66rem;
+    border-bottom: 1px solid rgba(180,165,255,0.16);
+  }
+
+  .concept-prism-row:last-child {
+    border-bottom: 0;
+  }
+
+  .concept-prism-tag {
+    color: #d7d1e9;
+    font-size: 0.67rem;
+    letter-spacing: 0.14em;
+    font-family: "Martian Mono", monospace;
+  }
+
+  .concept-prism-row p {
+    margin: 0;
+    color: #cbc4de;
+    font-size: 0.84rem;
+    line-height: 1.5;
+  }
+
+  .stage-visual {
+    margin: 0.95rem 0 1.2rem;
+    border: 1px solid rgba(180,165,255,0.24);
+    border-radius: 14px;
+    background: rgba(12,7,28,0.78);
+    padding: 0.75rem;
+  }
+
+  .stage-visual h4 {
+    margin: 0 0 0.5rem;
+    font-size: 0.74rem;
+    letter-spacing: 0.15em;
+    color: #e7e1fa;
+  }
+
+  .state-meter {
+    display: grid;
+    gap: 0.44rem;
+  }
+
+  .state-meter-row {
+    display: grid;
+    grid-template-columns: 86px 1fr 42px;
+    gap: 0.45rem;
+    align-items: center;
+  }
+
+  .state-meter-row span {
+    color: #cdc6df;
+    font-size: 0.77rem;
+    letter-spacing: 0.08em;
+  }
+
+  .state-meter-row em {
+    color: #ede9fa;
+    font-style: normal;
+    font-size: 0.78rem;
+    text-align: right;
+  }
+
+  .state-meter-fill {
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    overflow: hidden;
+  }
+
+  .state-meter-fill b {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--spin), var(--phase));
+  }
+
+  .gate-strip {
+    display: grid;
+    gap: 0.56rem;
+  }
+
+  .gate-strip-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(46px, 1fr));
+    gap: 0.44rem;
+  }
+
+  .gate-pill {
+    border: 1px solid rgba(180,165,255,0.28);
+    border-radius: 999px;
+    text-align: center;
+    padding: 0.34rem 0.2rem;
+    font-size: 0.72rem;
+    color: #ece6fb;
+    background: rgba(117,86,246,0.2);
+  }
+
+  .gate-note {
+    margin: 0;
+    color: #cbc4de;
+    font-size: 0.83rem;
+    line-height: 1.5;
+  }
+
+  .entangle-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+    gap: 0.52rem;
+  }
+
+  .entangle-node {
+    border: 1px solid rgba(180,165,255,0.24);
+    border-radius: 10px;
+    padding: 0.45rem;
+    text-align: center;
+    color: #e9e4f9;
+    background: rgba(28,17,56,0.62);
+    font-size: 0.76rem;
+  }
+
+  .entangle-links {
+    margin-top: 0.58rem;
+    display: grid;
+    gap: 0.38rem;
+  }
+
+  .entangle-link {
+    border-left: 2px solid rgba(56,232,208,0.48);
+    background: rgba(56,232,208,0.08);
+    padding: 0.34rem 0.5rem;
+    color: #cdeee8;
+    font-size: 0.8rem;
+  }
+
+  .algo-perspective {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 0.55rem;
+  }
+
+  .algo-perspective-card {
+    border: 1px solid rgba(180,165,255,0.22);
+    border-radius: 10px;
+    background: rgba(20,12,46,0.58);
+    padding: 0.58rem;
+  }
+
+  .algo-perspective-card strong {
+    display: block;
+    margin-bottom: 0.28rem;
+    color: #f1ecff;
+    font-size: 0.76rem;
+    letter-spacing: 0.08em;
+  }
+
+  .algo-perspective-card p {
+    margin: 0;
+    color: #d1cbe3;
+    font-size: 0.82rem;
+    line-height: 1.52;
+  }
+
+  @media (max-width: 620px) {
+    .concept-prism-row {
+      grid-template-columns: 1fr;
+      gap: 0.3rem;
+    }
+
+    .state-meter-row {
+      grid-template-columns: 72px 1fr 38px;
+    }
+  }
 </style>

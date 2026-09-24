@@ -45,6 +45,26 @@ Learning value: opens door to phase-based algorithm intuition.
 
 {% include learning-components/algorithm-circuit-map.html %}
 
+## Visual: algorithm perspective board
+
+<section class="stage-visual" aria-label="Algorithm perspective board">
+	<h4>THREE WAYS TO READ AN ALGORITHM</h4>
+	<div class="algo-perspective">
+		<article class="algo-perspective-card">
+			<strong>FLOW VIEW</strong>
+			<p>Read it as a pipeline: prepare, transform, interfere, measure.</p>
+		</article>
+		<article class="algo-perspective-card">
+			<strong>RESOURCE VIEW</strong>
+			<p>Track what the algorithm uses most: phase control, depth, and qubit correlation.</p>
+		</article>
+		<article class="algo-perspective-card">
+			<strong>OUTCOME VIEW</strong>
+			<p>Focus on how each block increases the chance of useful answers.</p>
+		</article>
+	</div>
+</section>
+
 How to read this visual:
 
 1. Left block: prepare and query pattern.

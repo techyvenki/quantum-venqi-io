@@ -56,6 +56,29 @@ How to read this visual:
 
 {% include learning-components/bloch-sphere.html %}
 
+## Visual 3: same idea from a probability meter view
+
+<section class="stage-visual" aria-label="Probability meter">
+	<h4>PROBABILITY METER SNAPSHOT</h4>
+	<div class="state-meter">
+		<div class="state-meter-row">
+			<span>State A</span>
+			<div class="state-meter-fill"><b style="width:72%"></b></div>
+			<em>P(0)=0.72</em>
+		</div>
+		<div class="state-meter-row">
+			<span>State B</span>
+			<div class="state-meter-fill"><b style="width:48%"></b></div>
+			<em>P(0)=0.48</em>
+		</div>
+		<div class="state-meter-row">
+			<span>State C</span>
+			<div class="state-meter-fill"><b style="width:21%"></b></div>
+			<em>P(0)=0.21</em>
+		</div>
+	</div>
+</section>
+
 How to read this visual:
 
 1. The point/vector moves smoothly before measurement.

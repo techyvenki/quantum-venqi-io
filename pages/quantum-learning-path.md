@@ -32,24 +32,41 @@ Read each stage in order, try the visual block, then move to the next stage.
   </div>
 </section>
 
-<div class="viz-grid">
-  <div class="viz-card">
-    <h4>STAGE 1</h4>
-    <p>Single qubit states and measurement.</p>
+<section class="journey-track" aria-label="Learning journey map">
+  <ol>
+    <li class="journey-step">
+      <p class="journey-kicker">STAGE 1 · PROBABILITY VIEW</p>
+      <p class="journey-copy">Understand how one qubit stores chance before measurement.</p>
+    </li>
+    <li class="journey-step">
+      <p class="journey-kicker">STAGE 2 · TRANSFORMATION VIEW</p>
+      <p class="journey-copy">See gates as repeatable state transformations, not symbols to memorize.</p>
+    </li>
+    <li class="journey-step">
+      <p class="journey-kicker">STAGE 3 · SYSTEM VIEW</p>
+      <p class="journey-copy">Move from single objects to connected multi-qubit systems.</p>
+    </li>
+    <li class="journey-step">
+      <p class="journey-kicker">STAGE 4 · PATTERN VIEW</p>
+      <p class="journey-copy">Recognize reusable algorithm patterns used in many quantum workflows.</p>
+    </li>
+  </ol>
+</section>
+
+<section class="concept-prism" aria-label="Concept prism">
+  <div class="concept-prism-row">
+    <span class="concept-prism-tag">EASY ENGLISH</span>
+    <p>Use daily-language intuition first so concepts feel natural before formal notation.</p>
   </div>
-  <div class="viz-card">
-    <h4>STAGE 2</h4>
-    <p>How gates change state vectors.</p>
+  <div class="concept-prism-row">
+    <span class="concept-prism-tag">MATH VIEW</span>
+    <p>Map each idea to vectors, matrices, and probability constraints to stay precise.</p>
   </div>
-  <div class="viz-card">
-    <h4>STAGE 3</h4>
-    <p>Two-qubit systems and entanglement.</p>
+  <div class="concept-prism-row">
+    <span class="concept-prism-tag">ENGINEERING VIEW</span>
+    <p>Interpret every stage as an operation pipeline: input, transform, output, verification.</p>
   </div>
-  <div class="viz-card">
-    <h4>STAGE 4</h4>
-    <p>Circuits and basic algorithms.</p>
-  </div>
-</div>
+</section>
 
 ## 1) Learn single qubit states and measurement
 
@@ -69,13 +86,22 @@ Why this matters:
 - This is the first big mindset shift from classical computing.
 - Quantum programs are designed to shape probabilities before measurement.
 
-### Visual: move theta, watch probabilities
+### Perspective cards
 
-{% include learning-components/qubit-measurement.html %}
-
-### Visual: Bloch sphere intuition
-
-{% include learning-components/bloch-sphere.html %}
+<div class="lens-grid">
+  <article class="lens-card">
+    <h4 class="lens-label">INTUITION LENS</h4>
+    <p>One qubit behaves like a weighted guess that resolves to one final answer when checked.</p>
+  </article>
+  <article class="lens-card">
+    <h4 class="lens-label">MATH LENS</h4>
+    <p>Normalization keeps probabilities valid: the squared magnitudes must always add to 1.</p>
+  </article>
+  <article class="lens-card">
+    <h4 class="lens-label">BUILDER LENS</h4>
+    <p>Design operations to shape where probability mass should land at readout.</p>
+  </article>
+</div>
 
 ## 2) Practice gate operations on state vectors
 
@@ -100,9 +126,22 @@ Why this matters:
 - Real quantum algorithms are mostly careful gate choreography.
 - If you understand state transitions, you understand circuit behavior.
 
-### Visual: matrix transform intuition
+### Perspective cards
 
-{% include learning-components/vector-transform.html %}
+<div class="lens-grid">
+  <article class="lens-card">
+    <h4 class="lens-label">INTUITION LENS</h4>
+    <p>A gate is a move in state-space. A circuit is a planned sequence of moves.</p>
+  </article>
+  <article class="lens-card">
+    <h4 class="lens-label">MATH LENS</h4>
+    <p>Matrix-vector multiplication gives the next state, one operation at a time.</p>
+  </article>
+  <article class="lens-card">
+    <h4 class="lens-label">BUILDER LENS</h4>
+    <p>Order matters because each step feeds the next step with a changed state.</p>
+  </article>
+</div>
 
 ## 3) Study 2-qubit systems and entanglement
 
@@ -122,9 +161,22 @@ Why this matters:
 - Multi-qubit structure is where quantum advantage can start to appear.
 - Most useful quantum workloads need more than one qubit working together.
 
-### Visual: tensor product state mapping
+### Perspective cards
 
-{% include learning-components/tensor-map.html %}
+<div class="lens-grid">
+  <article class="lens-card">
+    <h4 class="lens-label">INTUITION LENS</h4>
+    <p>Two qubits are one bigger joint system, not just two isolated bits.</p>
+  </article>
+  <article class="lens-card">
+    <h4 class="lens-label">MATH LENS</h4>
+    <p>Tensor products create the combined basis needed for multi-qubit states.</p>
+  </article>
+  <article class="lens-card">
+    <h4 class="lens-label">BUILDER LENS</h4>
+    <p>Entanglement lets circuits encode linked outcomes across qubits.</p>
+  </article>
+</div>
 
 ## 4) Learn circuits and basic algorithms (Deutsch-Jozsa, Grover, QFT)
 
@@ -148,9 +200,22 @@ Why this matters:
 - These teach the design patterns reused in many advanced algorithms.
 - Even if hardware is noisy, the conceptual patterns stay important.
 
-### Visual: algorithm circuit map
+### Perspective cards
 
-{% include learning-components/algorithm-circuit-map.html %}
+<div class="lens-grid">
+  <article class="lens-card">
+    <h4 class="lens-label">INTUITION LENS</h4>
+    <p>Algorithms are repeatable playbooks for shaping interference before measurement.</p>
+  </article>
+  <article class="lens-card">
+    <h4 class="lens-label">MATH LENS</h4>
+    <p>Phase structure and amplitude updates are the core math behind speedups.</p>
+  </article>
+  <article class="lens-card">
+    <h4 class="lens-label">BUILDER LENS</h4>
+    <p>Recognize known patterns first, then fill details instead of memorizing every gate.</p>
+  </article>
+</div>
 
 ## How to study this path each week
 

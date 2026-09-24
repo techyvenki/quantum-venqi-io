@@ -42,6 +42,21 @@ The probabilities you get at the end depend on the whole sequence, not one gate 
 
 {% include learning-components/vector-transform.html %}
 
+## Visual: gate storyboard perspective
+
+<section class="stage-visual" aria-label="Gate storyboard">
+	<h4>STATE STORYBOARD</h4>
+	<div class="gate-strip">
+		<div class="gate-strip-row">
+			<span class="gate-pill">|0></span>
+			<span class="gate-pill">H</span>
+			<span class="gate-pill">Z</span>
+			<span class="gate-pill">H</span>
+		</div>
+		<p class="gate-note">Read left to right: start state, gate action, gate action, final pre-measurement state.</p>
+	</div>
+</section>
+
 How to read this visual:
 
 1. Think of the pink vector as your input.
