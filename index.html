@@ -230,8 +230,32 @@ h1{
 }
 .spot-head{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:10px}
 .spot-head span{font-size:9px;letter-spacing:.24em;color:var(--dim)}
+.spot-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 .spot-head a{font-size:10px;letter-spacing:.18em;color:var(--spin);text-decoration:none;opacity:.9}
 .spot-head a:hover{opacity:1;color:#fff}
+.spot-sort{
+  border:1px solid rgba(180,165,255,.28);
+  border-radius:999px;
+  background:rgba(10,6,26,.52);
+  display:inline-flex;
+  padding:2px;
+  gap:2px;
+}
+.spot-sort button{
+  border:0;
+  background:transparent;
+  color:var(--dim);
+  font:inherit;
+  font-size:8px;
+  letter-spacing:.14em;
+  border-radius:999px;
+  padding:4px 7px;
+  cursor:pointer;
+}
+.spot-sort button[aria-pressed="true"]{
+  color:#fff;
+  background:rgba(123,92,255,.24);
+}
 .spot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
 .spot-card{
   border:1px solid rgba(180,165,255,.2);border-radius:12px;padding:12px;
@@ -399,6 +423,8 @@ h1{
   .spot-head{margin-bottom:8px}
   .spot-head span{font-size:8px;letter-spacing:.16em}
   .spot-head a{font-size:8.5px;letter-spacing:.1em}
+  .spot-tools{width:100%;justify-content:space-between}
+  .spot-sort button{font-size:7px;letter-spacing:.1em;padding:4px 6px}
   .spot-card{padding:10px;border-radius:10px}
   .spot-tag{font-size:7.8px;letter-spacing:.14em;margin-bottom:6px}
   .spot-tag b{margin-left:6px;padding:1px 4px;font-size:7px}
@@ -462,7 +488,13 @@ h1{
     <section class="spotlight" id="spotlight" aria-label="Latest writing spotlight">
       <div class="spot-head">
         <span>LATEST TRANSMISSIONS</span>
-        <a href="#" id="open-archive">SEE ALL POSTS</a>
+        <div class="spot-tools">
+          <div class="spot-sort" role="group" aria-label="Sort spotlight posts">
+            <button type="button" id="sort-newest" aria-pressed="true">NEWEST</button>
+            <button type="button" id="sort-pinned" aria-pressed="false">PINNED FIRST</button>
+          </div>
+          <a href="#" id="open-archive">SEE ALL POSTS</a>
+        </div>
       </div>
       <div class="spot-grid" id="spot-grid"></div>
     </section>
@@ -625,9 +657,23 @@ try {
 } catch (e) {}
 
 var spotGrid=document.getElementById("spot-grid");
+var sortNewestBtn=document.getElementById("sort-newest");
+var sortPinnedBtn=document.getElementById("sort-pinned");
+var spotlightSort="newest";
+function byNewest(a,b){
+  var da=new Date((a.date||"")+"T00:00:00").getTime()||0;
+  var db=new Date((b.date||"")+"T00:00:00").getTime()||0;
+  return db-da;
+}
+function byPinnedThenNewest(a,b){
+  var pa=a.pinned?1:0, pb=b.pinned?1:0;
+  if(pb!==pa) return pb-pa;
+  return byNewest(a,b);
+}
 function renderSpotlight(){
   if(!spotGrid){return;}
-  var pin=POSTS.slice(0,3);
+  var sorted=POSTS.slice().sort(spotlightSort==="pinned"?byPinnedThenNewest:byNewest);
+  var pin=sorted.slice(0,3);
   var now=new Date();
   spotGrid.innerHTML=pin.map(function(p){
     var d=new Date(p.date+"T00:00:00");
@@ -643,6 +689,18 @@ function renderSpotlight(){
   }).join("");
 }
 renderSpotlight();
+sortNewestBtn.addEventListener("click",function(){
+  spotlightSort="newest";
+  sortNewestBtn.setAttribute("aria-pressed","true");
+  sortPinnedBtn.setAttribute("aria-pressed","false");
+  renderSpotlight();
+});
+sortPinnedBtn.addEventListener("click",function(){
+  spotlightSort="pinned";
+  sortNewestBtn.setAttribute("aria-pressed","false");
+  sortPinnedBtn.setAttribute("aria-pressed","true");
+  renderSpotlight();
+});
 
 /* ---------------- readout ---------------- */
 var bars=document.getElementById("bars");
