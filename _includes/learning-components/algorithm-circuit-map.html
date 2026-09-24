@@ -2,55 +2,44 @@
   <h3 class="interactive-title">CIRCUITS AND ALGORITHMS VISUAL MAP</h3>
   <p class="interactive-note">A simple map of how three foundational algorithms are structured in circuit form.</p>
 
-  <div class="sim-canvas">
-    <svg viewBox="0 0 760 300" role="img" aria-label="Deutsch-Jozsa, Grover, and QFT circuit map">
-      <rect x="18" y="22" width="226" height="256" rx="14" fill="rgba(123,92,255,0.12)" stroke="rgba(180,165,255,0.34)"/>
-      <rect x="266" y="22" width="226" height="256" rx="14" fill="rgba(56,232,208,0.08)" stroke="rgba(56,232,208,0.35)"/>
-      <rect x="514" y="22" width="226" height="256" rx="14" fill="rgba(255,95,162,0.07)" stroke="rgba(255,95,162,0.35)"/>
+  <div class="algo-tabs" role="tablist" aria-label="Choose algorithm focus">
+    <button class="algo-tab" type="button" data-role="algo-tab" data-algo="deutsch" aria-pressed="true">DEUTSCH-JOZSA</button>
+    <button class="algo-tab" type="button" data-role="algo-tab" data-algo="grover" aria-pressed="false">GROVER</button>
+    <button class="algo-tab" type="button" data-role="algo-tab" data-algo="qft" aria-pressed="false">QFT</button>
+  </div>
 
-      <text x="36" y="50" fill="#ece8f7" font-size="14" font-weight="600">Deutsch-Jozsa</text>
-      <text x="284" y="50" fill="#ece8f7" font-size="14" font-weight="600">Grover</text>
-      <text x="532" y="50" fill="#ece8f7" font-size="14" font-weight="600">QFT</text>
+  <div class="algo-grid">
+    <article class="algo-card is-active" data-role="algo-panel" data-algo="deutsch" tabindex="0">
+      <h4>Deutsch-Jozsa</h4>
+      <div class="algo-rail" aria-hidden="true">
+        <span class="algo-wire"></span>
+        <span class="algo-wire bottom"></span>
+        <div class="algo-gates"><span class="algo-gate">H</span><span class="algo-gate">Uf</span><span class="algo-gate">H</span></div>
+        <span class="algo-pulse"></span>
+      </div>
+      <p class="algo-note">One-query style check to detect whether the oracle is constant or balanced.</p>
+    </article>
 
-      <line x1="36" y1="84" x2="224" y2="84" stroke="rgba(180,165,255,0.35)"/>
-      <line x1="36" y1="124" x2="224" y2="124" stroke="rgba(180,165,255,0.35)"/>
-      <rect x="58" y="70" width="38" height="28" rx="6" fill="rgba(123,92,255,0.28)"/>
-      <rect x="110" y="70" width="48" height="28" rx="6" fill="rgba(123,92,255,0.22)"/>
-      <rect x="170" y="70" width="36" height="28" rx="6" fill="rgba(123,92,255,0.28)"/>
-      <text x="69" y="88" fill="#ece8f7" font-size="11">H</text>
-      <text x="123" y="88" fill="#ece8f7" font-size="11">Uf</text>
-      <text x="181" y="88" fill="#ece8f7" font-size="11">H</text>
-      <text x="42" y="164" fill="#bfb7dd" font-size="11">Test: constant vs balanced oracle</text>
+    <article class="algo-card" data-role="algo-panel" data-algo="grover" tabindex="0">
+      <h4>Grover</h4>
+      <div class="algo-rail" aria-hidden="true">
+        <span class="algo-wire"></span>
+        <span class="algo-wire bottom"></span>
+        <div class="algo-gates"><span class="algo-gate">H</span><span class="algo-gate">Uf</span><span class="algo-gate">D</span></div>
+        <span class="algo-pulse"></span>
+      </div>
+      <p class="algo-note">Loop oracle plus diffusion to amplify probability of the correct answer.</p>
+    </article>
 
-      <line x1="284" y1="84" x2="472" y2="84" stroke="rgba(56,232,208,0.34)"/>
-      <line x1="284" y1="124" x2="472" y2="124" stroke="rgba(56,232,208,0.34)"/>
-      <rect x="302" y="70" width="42" height="28" rx="6" fill="rgba(56,232,208,0.24)"/>
-      <rect x="356" y="70" width="44" height="28" rx="6" fill="rgba(56,232,208,0.20)"/>
-      <rect x="410" y="70" width="42" height="28" rx="6" fill="rgba(56,232,208,0.24)"/>
-      <text x="314" y="88" fill="#e9fbf8" font-size="11">H</text>
-      <text x="365" y="88" fill="#e9fbf8" font-size="11">Uf</text>
-      <text x="417" y="88" fill="#e9fbf8" font-size="11">D</text>
-      <text x="290" y="164" fill="#b8e8e1" font-size="11">Loop oracle + diffusion to amplify answer</text>
-
-      <line x1="532" y1="84" x2="720" y2="84" stroke="rgba(255,95,162,0.34)"/>
-      <line x1="532" y1="124" x2="720" y2="124" stroke="rgba(255,95,162,0.34)"/>
-      <rect x="548" y="70" width="38" height="28" rx="6" fill="rgba(255,95,162,0.22)"/>
-      <rect x="595" y="70" width="46" height="28" rx="6" fill="rgba(255,95,162,0.18)"/>
-      <rect x="651" y="70" width="52" height="28" rx="6" fill="rgba(255,95,162,0.22)"/>
-      <text x="560" y="88" fill="#ffe8f3" font-size="11">H</text>
-      <text x="606" y="88" fill="#ffe8f3" font-size="11">CP</text>
-      <text x="661" y="88" fill="#ffe8f3" font-size="11">SWAP</text>
-      <text x="540" y="164" fill="#e8bfd0" font-size="11">Turn basis amplitudes into frequency phases</text>
-
-      <circle cx="96" cy="84" r="4" fill="#38e8d0">
-        <animate attributeName="r" values="3;5;3" dur="1.6s" repeatCount="indefinite"/>
-      </circle>
-      <circle cx="344" cy="84" r="4" fill="#38e8d0">
-        <animate attributeName="r" values="3;5;3" dur="1.8s" repeatCount="indefinite"/>
-      </circle>
-      <circle cx="588" cy="84" r="4" fill="#38e8d0">
-        <animate attributeName="r" values="3;5;3" dur="1.7s" repeatCount="indefinite"/>
-      </circle>
-    </svg>
+    <article class="algo-card" data-role="algo-panel" data-algo="qft" tabindex="0">
+      <h4>QFT</h4>
+      <div class="algo-rail" aria-hidden="true">
+        <span class="algo-wire"></span>
+        <span class="algo-wire bottom"></span>
+        <div class="algo-gates"><span class="algo-gate">H</span><span class="algo-gate">CP</span><span class="algo-gate">SWAP</span></div>
+        <span class="algo-pulse"></span>
+      </div>
+      <p class="algo-note">Transforms basis amplitude and phase structure into frequency-like patterns.</p>
+    </article>
   </div>
 </section>

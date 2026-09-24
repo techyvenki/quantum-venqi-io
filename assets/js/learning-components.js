@@ -196,11 +196,102 @@
     });
   }
 
+  function initAlgorithmMap() {
+    var maps = document.querySelectorAll('[data-component="algorithm-map"]');
+    maps.forEach(function (mapEl) {
+      var tabs = mapEl.querySelectorAll('[data-role="algo-tab"]');
+      var panels = mapEl.querySelectorAll('[data-role="algo-panel"]');
+
+      function activate(algo) {
+        tabs.forEach(function (tab) {
+          var isActive = tab.getAttribute('data-algo') === algo;
+          tab.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+        panels.forEach(function (panel) {
+          var on = panel.getAttribute('data-algo') === algo;
+          panel.classList.toggle('is-active', on);
+        });
+      }
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          activate(tab.getAttribute('data-algo'));
+        });
+      });
+
+      panels.forEach(function (panel) {
+        panel.addEventListener('mouseenter', function () {
+          activate(panel.getAttribute('data-algo'));
+        });
+        panel.addEventListener('focus', function () {
+          activate(panel.getAttribute('data-algo'));
+        });
+      });
+
+      activate('deutsch');
+    });
+  }
+
+  function initProgressTrackers() {
+    var groups = document.querySelectorAll('[data-progress-group]');
+    groups.forEach(function (groupEl) {
+      var groupId = groupEl.getAttribute('data-progress-group');
+      var key = 'venqi-progress-' + groupId;
+      var boxes = groupEl.querySelectorAll('input[type="checkbox"][data-progress-id]');
+      var stat = groupEl.querySelector('[data-role="progress-stat"]');
+      var bar = groupEl.querySelector('[data-role="progress-bar"]');
+
+      var saved = {};
+      try {
+        saved = JSON.parse(localStorage.getItem(key) || '{}');
+      } catch (e) {
+        saved = {};
+      }
+
+      boxes.forEach(function (box) {
+        var id = box.getAttribute('data-progress-id');
+        box.checked = !!saved[id];
+      });
+
+      function renderStats() {
+        var total = boxes.length;
+        var done = 0;
+        boxes.forEach(function (box) {
+          if (box.checked) done += 1;
+        });
+        if (stat) stat.textContent = done + ' of ' + total + ' complete';
+        if (bar) bar.style.width = (total ? (done / total) * 100 : 0) + '%';
+      }
+
+      function persist() {
+        var data = {};
+        boxes.forEach(function (box) {
+          data[box.getAttribute('data-progress-id')] = box.checked;
+        });
+        try {
+          localStorage.setItem(key, JSON.stringify(data));
+        } catch (e) {
+        }
+      }
+
+      boxes.forEach(function (box) {
+        box.addEventListener('change', function () {
+          persist();
+          renderStats();
+        });
+      });
+
+      renderStats();
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initReveal();
     initQubitMeasurement();
     initBlochSphere();
     initVectorTransform();
     initTensorMap();
+    initAlgorithmMap();
+    initProgressTrackers();
   });
 })();

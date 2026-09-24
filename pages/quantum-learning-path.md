@@ -13,6 +13,22 @@ next_label: QUANTUM BASICS
 This page turns your learning journey into 4 practical stages.
 Read each stage in order, try the visual block, then move to the next stage.
 
+<section class="progress-box" data-progress-group="quantum-path-v1">
+  <div class="progress-head">
+    <h3 class="progress-title">PATH PROGRESS TRACKER</h3>
+    <span class="progress-stat" data-role="progress-stat">0 of 4 complete</span>
+  </div>
+  <div class="progress-bar-track" aria-hidden="true">
+    <div class="progress-bar-fill" data-role="progress-bar"></div>
+  </div>
+  <div class="progress-list">
+    <label><input type="checkbox" data-progress-id="stage1"> Stage 1 complete: Single qubit and measurement</label>
+    <label><input type="checkbox" data-progress-id="stage2"> Stage 2 complete: Gate operations on state vectors</label>
+    <label><input type="checkbox" data-progress-id="stage3"> Stage 3 complete: Two-qubit systems and entanglement</label>
+    <label><input type="checkbox" data-progress-id="stage4"> Stage 4 complete: Circuits and basic algorithms</label>
+  </div>
+</section>
+
 <div class="viz-grid">
   <div class="viz-card">
     <h4>STAGE 1</h4>
